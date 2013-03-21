@@ -10,4 +10,8 @@
 
 @interface SecondViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIWebView *webView2;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingSign2;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
+
 @end
