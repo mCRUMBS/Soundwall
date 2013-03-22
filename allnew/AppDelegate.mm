@@ -16,20 +16,14 @@
 @interface AppDelegate ()
 
 @property(strong) CLLocationManager *locationManager;
-@property(strong) UIViewController *viewController;
 
 @end
 
 
 @implementation AppDelegate
 
-@synthesize window = _window;
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-//    [_window addSubview:self.viewController.view];
-//    [_window makeKeyAndVisible];
-    
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
      (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
