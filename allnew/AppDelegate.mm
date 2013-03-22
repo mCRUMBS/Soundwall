@@ -73,11 +73,11 @@
     NSString *text = [[url host] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     ChanID *user = [ChanID sharedUser];
     if ([text isEqualToString:@"channel1"]) {
-        user.cusurl = @"channel1";
+        user.cusurl = text;
         user.starter = @"1";
     }
     else if ([text isEqualToString:@"channel2"]) {
-        user.cusurl = @"channel2";
+        user.cusurl = text;
     }
     return NO;
 }
