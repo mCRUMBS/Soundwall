@@ -25,21 +25,7 @@
 @synthesize window = _window;
 @synthesize viewController=_viewController;
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-    NSLog(@"didUpdateToLocation: %@", newLocation);
-    CLLocation *currentLocation = newLocation;
-    
-    if (currentLocation != nil) {
-        ChanID *user = [ChanID sharedUser];
-        user.lon = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
-        user.lat = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
-        [self.locationManager stopUpdatingLocation];
-    }
-}
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
     [_window addSubview:_viewController.view];
@@ -113,6 +99,26 @@
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
 	NSLog(@"Failed to get token, error: %@", error);
+}
+
+@end
+
+
+//***************************************************************************************
+// Location Manager Protocol implementation
+//***************************************************************************************
+@implementation AppDelegate (LocationManagerProtocol)
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation {
+
+    if (newLocation != nil) {
+        ChanID *user = [ChanID sharedUser];
+        user.lon = [NSString stringWithFormat:@"%.8f", newLocation.coordinate.longitude];
+        user.lat = [NSString stringWithFormat:@"%.8f", newLocation.coordinate.latitude];
+        [self.locationManager stopUpdatingLocation];
+    }
 }
 
 @end
