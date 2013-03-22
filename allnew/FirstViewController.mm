@@ -25,7 +25,6 @@
 @synthesize loadingSign1;
 @synthesize label1;
 @synthesize image1;
-@synthesize image1a;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -69,7 +68,7 @@
     [self setWebView1:nil];
     [self setLoadingSign1:nil];
     [self setImage1:nil];
-    [self setImage1a:nil];
+    [self setHeaderImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -154,10 +153,10 @@
 }
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
-    if ((fromInterfaceOrientation == UIInterfaceOrientationPortrait) || (fromInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)) {
-        
-        UIImage *image1anew = [UIImage imageNamed: @"header_wide@2x.png"];
-        [image1a setImage:image1anew];
+    if ((fromInterfaceOrientation == UIInterfaceOrientationPortrait)
+            || (fromInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)) {
+
+        [self.headerImageView setImage:[UIImage imageNamed:@"header_wide@2x.png"]];
         UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
         UITabBar *tabBar = tabBarController.tabBar;
         tabBar.backgroundImage = [UIImage imageNamed:@"tab-bar_hg_wide.png"];
@@ -168,10 +167,10 @@
         //       [[UITabBar appearance] setBackgroundImage:tabBarBackground];
         
     }
-    if ((fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight) || (fromInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)) {
-        
-        UIImage *image1anew = [UIImage imageNamed: @"header.png"];
-        [image1a setImage:image1anew];
+    if ((fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
+            || (fromInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)) {
+
+        [self.headerImageView setImage:[UIImage imageNamed:@"header.png"]];
     }
 }
 

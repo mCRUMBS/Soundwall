@@ -41,8 +41,8 @@
                     <tabBarItem key="tabBarItem" title="First" image="first" id="7"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
+                        <outlet property="headerImageView" destination="28U-Ip-jcK" id="mEX-7g-EML"/>
                         <outlet property="image1" destination="vnb-JY-4jE" id="2aP-td-4Ob"/>
-                        <outlet property="image1a" destination="28U-Ip-jcK" id="mEX-7g-EML"/>
                         <outlet property="label1" destination="yiq-86-dcw" id="J9Y-1k-6mE"/>
                         <outlet property="loadingSign1" destination="hSN-Gr-LWe" id="1o5-IT-i1Q"/>
                         <outlet property="webView1" destination="eqs-si-sCQ" id="2wW-SF-asF"/>
@@ -218,8 +218,8 @@
         <class className="FirstViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="headerImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="image1" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="image1a" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="label1" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="loadingSign1" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="webView1" candidateClass="UIWebView"/>
