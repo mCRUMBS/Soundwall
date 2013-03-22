@@ -9,10 +9,9 @@
 #import "FirstViewController.h"
 #import "ARViewController.h"
 #import "ChanID.h"
+#import "AppEnvironment.h"
 
 @class EAGLView;
-
-#define kMCrumbsStartupAppUniqueAppIdentifierKey @"Unique identifier for myApp"
 
 @interface FirstViewController ()
 
@@ -27,20 +26,6 @@
 @synthesize label1;
 @synthesize image1;
 @synthesize image1a;
-
-- (NSString *)createUUID {
-    NSString *uIdentifier = [[NSUserDefaults standardUserDefaults] objectForKey:kMCrumbsStartupAppUniqueAppIdentifierKey];
-    if (!uIdentifier) {
-        CFUUIDRef uuidRef = CFUUIDCreate(NULL);
-        CFStringRef uuidStringRef = CFUUIDCreateString(NULL, uuidRef);
-        CFRelease(uuidRef);
-        uIdentifier = [NSString stringWithString:(__bridge NSString *)uuidStringRef];
-        CFRelease(uuidStringRef);
-        [[NSUserDefaults standardUserDefaults] setObject:uIdentifier forKey:kMCrumbsStartupAppUniqueAppIdentifierKey];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-    return uIdentifier;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -98,8 +83,8 @@
     self.label1.hidden = YES;
     self.image1.hidden = YES;
     ChanID *user = [ChanID sharedUser];
-    NSString *myAppUniqueID =[self createUUID];
-    NSString *fullURL = [NSString stringWithFormat:@"http://bmwi.marways.com/web/news/?uid=%@&lat=%@&lon=%@", myAppUniqueID, user.lat, user.lon];
+    NSString *fullURL = [NSString stringWithFormat:@"http://bmwi.marways.com/web/news/?uid=%@&lat=%@&lon=%@",
+                    [AppEnvironment createUUID], user.lat, user.lon];
     NSURL *websiteURL = [NSURL URLWithString:fullURL];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:websiteURL];
     [self.webView1 loadRequest:requestObj];

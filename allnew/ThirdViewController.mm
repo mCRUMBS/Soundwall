@@ -8,6 +8,7 @@
 
 #import "ThirdViewController.h"
 #import "ChanID.h"
+#import "AppEnvironment.h"
 
 @interface ThirdViewController ()
 
@@ -28,31 +29,6 @@
         // Custom initialization
     }
     return self;
-}
-
-- (NSString *)createUUID {
-    
-    NSString *uIdentifier = [[NSUserDefaults standardUserDefaults] objectForKey:@"Unique identifier for myApp"];
-    
-    if (!uIdentifier) {
-        
-        CFUUIDRef uuidRef = CFUUIDCreate(NULL);
-        
-        CFStringRef uuidStringRef = CFUUIDCreateString(NULL, uuidRef);
-        
-        CFRelease(uuidRef);
-        
-        uIdentifier = [NSString stringWithString:(__bridge NSString *)uuidStringRef];
-        
-        CFRelease(uuidStringRef);
-        
-        [[NSUserDefaults standardUserDefaults] setObject:uIdentifier forKey:@"Unique identifier for myApp"];
-        
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-    }
-    
-    return uIdentifier;
 }
 
 - (void)viewDidLoad
@@ -78,8 +54,8 @@
     self.webView3.hidden = NO;
     self.label3.hidden = YES;
     ChanID *user = [ChanID sharedUser];
-    NSString *myAppUniqueID =[self createUUID];
-    NSString *fullURL = [NSString stringWithFormat:@"http://bmwi.marways.com/web/startup/?uid=%@&lat=%@&lon=%@", myAppUniqueID, user.lat, user.lon];
+    NSString *fullURL = [NSString stringWithFormat:@"http://bmwi.marways.com/web/startup/?uid=%@&lat=%@&lon=%@",
+                    [AppEnvironment createUUID], user.lat, user.lon];
     NSURL *websiteURL = [NSURL URLWithString:fullURL];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:websiteURL];
     [self.webView3 loadRequest:requestObj];

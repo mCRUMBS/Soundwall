@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F54891716FC5CB000B632D1 /* AppEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F54891616FC5CB000B632D1 /* AppEnvironment.m */; };
 		C21113FA16F497B5008C0A05 /* app_icon_startbuttons_57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = C21113F816F497B5008C0A05 /* app_icon_startbuttons_57x57.png */; };
 		C21113FB16F497B5008C0A05 /* app_icon_startbuttons_114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = C21113F916F497B5008C0A05 /* app_icon_startbuttons_114x114.png */; };
 		C21113FE16F49801008C0A05 /* app_icon_startbuttons_72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = C21113FC16F49801008C0A05 /* app_icon_startbuttons_72x72.png */; };
@@ -532,6 +533,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F54891516FC5CB000B632D1 /* AppEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppEnvironment.h; sourceTree = "<group>"; };
+		1F54891616FC5CB000B632D1 /* AppEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppEnvironment.m; sourceTree = "<group>"; };
 		C21113F816F497B5008C0A05 /* app_icon_startbuttons_57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_startbuttons_57x57.png; sourceTree = "<group>"; };
 		C21113F916F497B5008C0A05 /* app_icon_startbuttons_114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_startbuttons_114x114.png; sourceTree = "<group>"; };
 		C21113FC16F49801008C0A05 /* app_icon_startbuttons_72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_startbuttons_72x72.png; sourceTree = "<group>"; };
@@ -1100,6 +1103,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F54891416FC5C9C00B632D1 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1F54891516FC5CB000B632D1 /* AppEnvironment.h */,
+				1F54891616FC5CB000B632D1 /* AppEnvironment.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		C26D4CF216F97C81006A2CA9 /* Icons 30x30 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1698,6 +1710,7 @@
 		C2C3CD3F16EDF482008E9843 /* startapp */ = {
 			isa = PBXGroup;
 			children = (
+				1F54891416FC5C9C00B632D1 /* Common */,
 				C2EB649B16F0E64000C0EE24 /* JunaioPlugin */,
 				C2C3CD4816EDF482008E9843 /* AppDelegate.h */,
 				C2EB650E16F0E75500C0EE24 /* AppDelegate.mm */,
@@ -2353,6 +2366,7 @@
 				C2A66E4816FB40DA00D4FCE3 /* FourthViewController.mm in Sources */,
 				C2A66E4916FB40DA00D4FCE3 /* SecondViewController.mm in Sources */,
 				C2A66E4A16FB40DA00D4FCE3 /* ThirdViewController.mm in Sources */,
+				1F54891716FC5CB000B632D1 /* AppEnvironment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
