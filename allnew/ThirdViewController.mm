@@ -19,18 +19,22 @@
 @synthesize webView3;
 @synthesize loadingSign3;
 @synthesize label3;
-@synthesize image3a;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self updateContentAccordingToCurrentInterfaceOrientation];
+}
+
 - (void)viewDidUnload {
     [self setWebView3:nil];
     [self setLoadingSign3:nil];
     [self setLabel3:nil];
-    [self setImage3a:nil];
+    [self setHeaderImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -50,9 +54,29 @@
 
 }
 
+#pragma mark -
+#pragma mark Interface Rotation
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-//    return (interfaceOrientation == UIInterfaceOrientationPortrait);
     return YES;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self updateContentAccordingToCurrentInterfaceOrientation];
+}
+
+- (void)updateContentAccordingToCurrentInterfaceOrientation {
+    UIInterfaceOrientation current = [[UIApplication sharedApplication] statusBarOrientation];
+    UIImage *headerImageViewBackgroundImage = nil;
+    if (UIInterfaceOrientationIsPortrait(current)) { // current layout is "Portrait"
+        headerImageViewBackgroundImage = [[UIImage imageNamed:@"header.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
+    }
+    else if (UIInterfaceOrientationIsLandscape(current)) { // current layout is "Landscape"
+        headerImageViewBackgroundImage = [[UIImage imageNamed:@"header_wide.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.headerImageView setImage:headerImageViewBackgroundImage];
+    });
 }
 
 #pragma mark -

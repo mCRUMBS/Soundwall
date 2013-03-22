@@ -63,8 +63,7 @@
     user.starter = @"1";
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [self setWebView1:nil];
     [self setLoadingSign1:nil];
     [self setImage1:nil];
@@ -77,6 +76,9 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillAppear:animated];
+
+    [self updateContentAccordingToCurrentInterfaceOrientation];
+
     self.webView1.hidden = NO;
     self.label1.hidden = YES;
     self.image1.hidden = YES;
@@ -162,6 +164,10 @@
 }
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self updateContentAccordingToCurrentInterfaceOrientation];
+}
+
+- (void)updateContentAccordingToCurrentInterfaceOrientation {
     UIImage *headerImageViewBackgroundImage = nil;
     UIImage *tabBarSelectionIndicatorImage = nil;
 
@@ -169,12 +175,10 @@
     UIInterfaceOrientation current = [[UIApplication sharedApplication] statusBarOrientation];
 
     if (UIInterfaceOrientationIsPortrait(current)) { // current layout is "Portrait"
-        NSLog(@"Interface PORTRAIT");
         tabBarSelectionIndicatorImage = [[UIImage imageNamed:@"tab-bar_active.png"] resizableImageWithCapInsets:imgInsets];
         headerImageViewBackgroundImage = [[UIImage imageNamed:@"header.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
     }
     else if (UIInterfaceOrientationIsLandscape(current)) { // current layout is "Landscape"
-        NSLog(@"Interface LANDSCAPE");
         tabBarSelectionIndicatorImage = [[UIImage imageNamed:@"tab-bar_active_wide.png"] resizableImageWithCapInsets:imgInsets];
         headerImageViewBackgroundImage = [[UIImage imageNamed:@"header_wide.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
     }
@@ -183,6 +187,7 @@
         [self.tabBarController.tabBar setSelectionIndicatorImage:tabBarSelectionIndicatorImage];
         [self.headerImageView setImage:headerImageViewBackgroundImage];
     });
+
 }
 
 #pragma mark -

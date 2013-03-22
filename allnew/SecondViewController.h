@@ -13,6 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIWebView *webView2;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingSign2;
 @property (weak, nonatomic) IBOutlet UILabel *label2;
-@property (weak, nonatomic) IBOutlet UIImageView *image2a;
+@property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 
 @end
