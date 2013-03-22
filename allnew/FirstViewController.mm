@@ -29,8 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
+
     // Animierter SplashScreen
     [self hideTabBar:self.tabBarController];
 
@@ -120,28 +119,6 @@
     user.starter = @"0";
 }
 
--(void) webViewDidStartLoad:(UIWebView *)webView {
-    [self.loadingSign1 startAnimating];
-    self.loadingSign1.hidden = NO;
-}
-
--(void) webViewDidFinishLoad:(UIWebView *)webView {
-    [self.loadingSign1 stopAnimating];
-    self.loadingSign1.hidden = YES;
-    [NSThread sleepForTimeInterval:5.0];
-    [self showTabBar:self.tabBarController];
-}
-
--(void)webView:(UIWebView *)webview didFailLoadWithError:(NSError *)error {
-    self.webView1.hidden = YES;
-    [self.loadingSign1 stopAnimating];
-    self.loadingSign1.hidden = YES;
-    self.label1.hidden = NO;
-    self.image1.hidden = NO;
-    [NSThread sleepForTimeInterval:5.0];
-    [self showTabBar:self.tabBarController];
-}
-
 - (void)hideTabBar:(UITabBarController *) tabbarcontroller {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.01];
@@ -198,5 +175,29 @@
     }
 }
 
+#pragma mark -
+#pragma mark UIWebViewDelegate
+
+-(void) webViewDidStartLoad:(UIWebView *)webView {
+    [self.loadingSign1 startAnimating];
+    self.loadingSign1.hidden = NO;
+}
+
+-(void) webViewDidFinishLoad:(UIWebView *)webView {
+    [self.loadingSign1 stopAnimating];
+    self.loadingSign1.hidden = YES;
+    [NSThread sleepForTimeInterval:5.0];
+    [self showTabBar:self.tabBarController];
+}
+
+-(void)webView:(UIWebView *)webview didFailLoadWithError:(NSError *)error {
+    self.webView1.hidden = YES;
+    [self.loadingSign1 stopAnimating];
+    self.loadingSign1.hidden = YES;
+    self.label1.hidden = NO;
+    self.image1.hidden = NO;
+    [NSThread sleepForTimeInterval:5.0];
+    [self showTabBar:self.tabBarController];
+}
 
 @end

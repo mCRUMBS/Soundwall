@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FourthViewController : UIViewController
+@interface FourthViewController : UIViewController <UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView4;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingSign4;

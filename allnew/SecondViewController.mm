@@ -21,15 +21,13 @@
 @synthesize label2;
 @synthesize image2a;
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
+    // Do any additional setup after loading the view.
+
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [self setWebView2:nil];
     [self setLoadingSign2:nil];
     [self setLabel2:nil];
@@ -52,6 +50,13 @@
     [self.webView2 loadRequest:requestObj];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark -
+#pragma mark UIWebViewDelegate
+
 -(void) webViewDidStartLoad:(UIWebView *)webView {
     [self.loadingSign2 startAnimating];
     self.loadingSign2.hidden = NO;
@@ -67,12 +72,6 @@
     [self.loadingSign2 stopAnimating];
     self.loadingSign2.hidden = YES;
     self.label2.hidden = NO;
-}
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end

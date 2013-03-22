@@ -21,24 +21,12 @@
 @synthesize label3;
 @synthesize image3a;
 
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    }
-
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [self setWebView3:nil];
     [self setLoadingSign3:nil];
     [self setLabel3:nil];
@@ -62,6 +50,13 @@
 
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark -
+#pragma mark UIWebViewDelegate
+
 -(void) webViewDidStartLoad:(UIWebView *)webView {
     [self.loadingSign3 startAnimating];
     self.loadingSign3.hidden = NO;
@@ -77,12 +72,6 @@
     [self.loadingSign3 stopAnimating];
     self.loadingSign3.hidden = YES;
     self.label3.hidden = NO;
-}
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end

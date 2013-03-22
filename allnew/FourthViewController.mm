@@ -62,6 +62,13 @@
     [self.webView4 loadRequest:requestObj];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark -
+#pragma mark UIWebViewDelegate
+
 -(void) webViewDidStartLoad:(UIWebView *)webView {
     [self.loadingSign4 startAnimating];
     self.loadingSign4.hidden = NO;
@@ -77,12 +84,6 @@
     [self.loadingSign4 stopAnimating];
     self.loadingSign4.hidden = YES;
     self.label4.hidden = NO;
-}
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ThirdViewController : UIViewController
+@interface ThirdViewController : UIViewController <UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView3;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingSign3;
