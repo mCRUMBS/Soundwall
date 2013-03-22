@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIWebView *webView4;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingSign4;
 @property (weak, nonatomic) IBOutlet UILabel *label4;
+@property (weak, nonatomic) IBOutlet UIImageView *image4a;
 
 @end

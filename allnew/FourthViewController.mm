@@ -1,22 +1,25 @@
 //
-//  SecondiPadViewController.m
+//  FourthViewController.m
 //  allnew
 //
 //  Created by Martin Adam on 12.03.13.
 //  Copyright (c) 2013 mCRUMBS GmbH. All rights reserved.
 //
 
-#import "SecondiPadViewController.h"
+#import "FourthViewController.h"
+#import "ChanID.h"
 
-@interface SecondiPadViewController ()
+@interface FourthViewController ()
 
 @end
 
-@implementation SecondiPadViewController
+@implementation FourthViewController
 
-@synthesize webViewP2;
-@synthesize loadingSignP2;
-@synthesize labelP2;
+@synthesize webView4;
+@synthesize loadingSign4;
+@synthesize label4;
+@synthesize image4a;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -56,13 +59,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    }
+    
+}
 
 - (void)viewDidUnload
 {
-    [self setWebViewP2:nil];
-    [self setLoadingSignP2:nil];
-    [self setLabelP2:nil];
+    [self setWebView4:nil];
+    [self setLoadingSign4:nil];
+    [self setLabel4:nil];
+    [self setImage4a:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -71,32 +76,31 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillAppear:animated];
-    self.webViewP2.hidden = NO;
-    self.labelP2.hidden = YES;
+    self.webView4.hidden = NO;
+    self.label4.hidden = YES;
+    ChanID *user = [ChanID sharedUser];
     NSString *myAppUniqueID =[self createUUID];
-    NSString *fullURL = [NSString stringWithFormat:@"http://mcrumbs.com?uid=%@", myAppUniqueID];
+    NSString *fullURL = [NSString stringWithFormat:@"http://bmwi.marways.com/web/mehr/?uid=%@&lat=%@&lon=%@", myAppUniqueID, user.lat, user.lon];
     NSURL *websiteURL = [NSURL URLWithString:fullURL];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:websiteURL];
-    [self.webViewP2 loadRequest:requestObj];
-
+    [self.webView4 loadRequest:requestObj];
 }
 
-
 -(void) webViewDidStartLoad:(UIWebView *)webView {
-    [self.loadingSignP2 startAnimating];
-    self.loadingSignP2.hidden = NO;
+    [self.loadingSign4 startAnimating];
+    self.loadingSign4.hidden = NO;
 }
 
 -(void) webViewDidFinishLoad:(UIWebView *)webView {
-    [self.loadingSignP2 stopAnimating];
-    self.loadingSignP2.hidden = YES;
+    [self.loadingSign4 stopAnimating];
+    self.loadingSign4.hidden = YES;
 }
 
 -(void)webView:(UIWebView *)webview didFailLoadWithError:(NSError *)error {
-    self.webViewP2.hidden = YES;
-    [self.loadingSignP2 stopAnimating];
-    self.loadingSignP2.hidden = YES;
-    self.labelP2.hidden = NO;
+    self.webView4.hidden = YES;
+    [self.loadingSign4 stopAnimating];
+    self.loadingSign4.hidden = YES;
+    self.label4.hidden = NO;
 }
 
 
@@ -104,6 +108,5 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
 
 @end

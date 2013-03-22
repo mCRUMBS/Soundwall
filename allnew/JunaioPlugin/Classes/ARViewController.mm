@@ -10,12 +10,12 @@
 @implementation ARViewController
 
 #pragma mark - View lifecycle
-
+@class EAGLView;
 
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
-	
+	[LiveViewObjectContextView class];
 	// use this call to move the radar position
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 	{

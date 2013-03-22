@@ -96,6 +96,7 @@
     if ([text isEqualToString:@"channel1"]) {
         ChanID *user = [ChanID sharedUser];
         user.cusurl = @"channel1";
+        user.starter = @"1";
     }
     if ([text isEqualToString:@"channel2"]) {
         ChanID *user = [ChanID sharedUser];

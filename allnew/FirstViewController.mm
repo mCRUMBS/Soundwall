@@ -10,6 +10,8 @@
 #import "ARViewController.h"
 #import "ChanID.h"
 
+@class EAGLView;
+
 @interface FirstViewController ()
 
 @end
@@ -22,6 +24,7 @@
 @synthesize loadingSign1;
 @synthesize label1;
 @synthesize image1;
+@synthesize image1a;
 
 - (NSString *)createUUID {
     NSString *uIdentifier = [[NSUserDefaults standardUserDefaults] objectForKey:@"Unique identifier for myApp"];
@@ -50,9 +53,6 @@
     for (int j = 1; j < 99; j++) {
         NSMutableString *imageName = [NSMutableString string];
         [imageName appendString:@"Splash"];
-//        if (j <= 9) {
-//            [imageName appendString:@"0"];
-//        }
         [imageName appendString:[NSString stringWithFormat:@"%d", j]];
         if (screenSize.height > 480.0f) {
             [imageName appendString:@"-568h"];
@@ -74,6 +74,8 @@
     ryuJump.contentMode = UIViewContentModeScaleToFill;
     [self.view addSubview:ryuJump];
     [ryuJump startAnimating];
+    ChanID *user = [ChanID sharedUser];
+    user.starter = @"1";
 }
 
 - (void)viewDidUnload
@@ -81,6 +83,7 @@
     [self setWebView1:nil];
     [self setLoadingSign1:nil];
     [self setImage1:nil];
+    [self setImage1a:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -101,24 +104,39 @@
     
 }
 
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    ChanID *user = [ChanID sharedUser];
+    if ([user.starter isEqualToString:@"1"]) {
+        if ([user.cusurl isEqualToString:@"channel1"]) {
+            [self.window makeKeyAndVisible];
+            ARViewController* junaioPlugin = [[ARViewController alloc] init];
+            
+            // present the viewcontroller
+            [self presentViewController:junaioPlugin animated:YES completion:nil];
+        }
+    }
+    user.starter = @"0";
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     ChanID *user = [ChanID sharedUser];
-    if ([user.cusurl isEqualToString:@"channel1"]) {
+    if ([user.starter isEqualToString:@"1"]) {
+        if ([user.cusurl isEqualToString:@"channel1"]) {
         [self.window makeKeyAndVisible];
         ARViewController* junaioPlugin = [[ARViewController alloc] init];
     
         // present the viewcontroller
         [self presentViewController:junaioPlugin animated:YES completion:nil];
-        
+        }
     }
+    user.starter = @"0";
 }
-
 
 -(void) webViewDidStartLoad:(UIWebView *)webView {
     [self.loadingSign1 startAnimating];
     self.loadingSign1.hidden = NO;
 }
-
 
 -(void) webViewDidFinishLoad:(UIWebView *)webView {
     [self.loadingSign1 stopAnimating];
@@ -199,6 +217,28 @@
     }
     
     [UIView commitAnimations];
+}
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    if ((fromInterfaceOrientation == UIInterfaceOrientationPortrait) || (fromInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)) {
+        
+        UIImage *image1anew = [UIImage imageNamed: @"header_wide@2x.png"];
+        [image1a setImage:image1anew];
+        UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+        UITabBar *tabBar = tabBarController.tabBar;
+        tabBar.backgroundImage = [UIImage imageNamed:@"tab-bar_hg_wide.png"];
+        UIImage* tabBarBackground = [[UIImage imageNamed:@"tab-bar_hg_wide.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+        [self.tabBarController.tabBar setBackgroundImage:tabBarBackground];
+        [self.tabBarController.tabBar setSelectionIndicatorImage:[UIImage imageNamed:@"tab-bar_active_wide.png"]];
+        
+        //       [[UITabBar appearance] setBackgroundImage:tabBarBackground];
+        
+    }
+    if ((fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight) || (fromInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)) {
+        
+        UIImage *image1anew = [UIImage imageNamed: @"header.png"];
+        [image1a setImage:image1anew];
+    }
 }
 
 

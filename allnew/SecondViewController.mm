@@ -1,22 +1,24 @@
 //
-//  FourthiPadViewController.m
+//  SecondViewController.m
 //  allnew
 //
-//  Created by Martin Adam on 12.03.13.
+//  Created by Martin Adam on 11.03.13.
 //  Copyright (c) 2013 mCRUMBS GmbH. All rights reserved.
 //
 
-#import "FourthiPadViewController.h"
+#import "SecondViewController.h"
+#import "ChanID.h"
 
-@interface FourthiPadViewController ()
+@interface SecondViewController ()
 
 @end
 
-@implementation FourthiPadViewController
+@implementation SecondViewController
 
-@synthesize webViewP4;
-@synthesize loadingSignP4;
-@synthesize labelP4;
+@synthesize webView2;
+@synthesize loadingSign2;
+@synthesize label2;
+@synthesize image2a;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -56,14 +58,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-   
+    
 }
 
 - (void)viewDidUnload
 {
-    [self setWebViewP4:nil];
-    [self setLoadingSignP4:nil];
-    [self setLabelP4:nil];
+    [self setWebView2:nil];
+    [self setLoadingSign2:nil];
+    [self setLabel2:nil];
+    [self setImage2a:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -72,31 +75,31 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillAppear:animated];
-    self.webViewP4.hidden = NO;
-    self.labelP4.hidden = YES;
+    self.webView2.hidden = NO;
+    self.label2.hidden = YES;
+    ChanID *user = [ChanID sharedUser];
     NSString *myAppUniqueID =[self createUUID];
-    NSString *fullURL = [NSString stringWithFormat:@"http://mcrumbs.com?uid=%@", myAppUniqueID];
+    NSString *fullURL = [NSString stringWithFormat:@"http://bmwi.marways.com/web/stories/?uid=%@&lat=%@&lon=%@", myAppUniqueID, user.lat, user.lon];
     NSURL *websiteURL = [NSURL URLWithString:fullURL];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:websiteURL];
-    [self.webViewP4 loadRequest:requestObj];
+    [self.webView2 loadRequest:requestObj];
 }
 
-
 -(void) webViewDidStartLoad:(UIWebView *)webView {
-    [self.loadingSignP4 startAnimating];
-    self.loadingSignP4.hidden = NO;
+    [self.loadingSign2 startAnimating];
+    self.loadingSign2.hidden = NO;
 }
 
 -(void) webViewDidFinishLoad:(UIWebView *)webView {
-    [self.loadingSignP4 stopAnimating];
-    self.loadingSignP4.hidden = YES;
+    [self.loadingSign2 stopAnimating];
+    self.loadingSign2.hidden = YES;
 }
 
 -(void)webView:(UIWebView *)webview didFailLoadWithError:(NSError *)error {
-    self.webViewP4.hidden = YES;
-    [self.loadingSignP4 stopAnimating];
-    self.loadingSignP4.hidden = YES;
-    self.labelP4.hidden = NO;
+    self.webView2.hidden = YES;
+    [self.loadingSign2 stopAnimating];
+    self.loadingSign2.hidden = YES;
+    self.label2.hidden = NO;
 }
 
 

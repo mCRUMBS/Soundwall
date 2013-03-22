@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSString *custest;
 @property (nonatomic, retain) NSString *lat;
 @property (nonatomic, retain) NSString *lon;
+@property (nonatomic, retain) NSString *starter;
 
 + (ChanID *)sharedUser;
 
