@@ -71,13 +71,12 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     NSString *text = [[url host] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    ChanID *user = [ChanID sharedUser];
     if ([text isEqualToString:@"channel1"]) {
-        ChanID *user = [ChanID sharedUser];
         user.cusurl = @"channel1";
         user.starter = @"1";
     }
-    if ([text isEqualToString:@"channel2"]) {
-        ChanID *user = [ChanID sharedUser];
+    else if ([text isEqualToString:@"channel2"]) {
         user.cusurl = @"channel2";
     }
     return NO;
