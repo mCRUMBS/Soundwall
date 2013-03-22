@@ -11,7 +11,8 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property(strong) UIWindow *window;
+// Concrete implementation of UIApplicationDelegate window reference.
+@property(strong, nonatomic) UIWindow *window;
 
 @end
 
