@@ -70,7 +70,6 @@
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    
     NSString *text = [[url host] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     if ([text isEqualToString:@"channel1"]) {
         ChanID *user = [ChanID sharedUser];
@@ -81,17 +80,15 @@
         ChanID *user = [ChanID sharedUser];
         user.cusurl = @"channel2";
     }
-    return 0;
+    return NO;
 }
 
-- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
-{
-	NSLog(@"My token is: %@", deviceToken);
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSLog(@"My token is: %@", deviceToken);
 }
 
-- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
-{
-	NSLog(@"Failed to get token, error: %@", error);
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Failed to get token, error: %@", error);
 }
 
 @end
