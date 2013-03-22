@@ -16,6 +16,7 @@
 @interface AppDelegate ()
 
 @property(strong) CLLocationManager *locationManager;
+@property(strong) UIViewController *viewController;
 
 @end
 
@@ -23,13 +24,11 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize viewController=_viewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    
-    [_window addSubview:_viewController.view];
-    [_window makeKeyAndVisible];
+
+//    [_window addSubview:self.viewController.view];
+//    [_window makeKeyAndVisible];
     
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
      (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];

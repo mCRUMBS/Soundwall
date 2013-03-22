@@ -12,6 +12,8 @@
 
 @class EAGLView;
 
+#define kMCrumbsStartupAppUniqueAppIdentifierKey @"Unique identifier for myApp"
+
 @interface FirstViewController ()
 
 @end
@@ -27,14 +29,14 @@
 @synthesize image1a;
 
 - (NSString *)createUUID {
-    NSString *uIdentifier = [[NSUserDefaults standardUserDefaults] objectForKey:@"Unique identifier for myApp"];
+    NSString *uIdentifier = [[NSUserDefaults standardUserDefaults] objectForKey:kMCrumbsStartupAppUniqueAppIdentifierKey];
     if (!uIdentifier) {
         CFUUIDRef uuidRef = CFUUIDCreate(NULL);
         CFStringRef uuidStringRef = CFUUIDCreateString(NULL, uuidRef);
         CFRelease(uuidRef);
         uIdentifier = [NSString stringWithString:(__bridge NSString *)uuidStringRef];
         CFRelease(uuidStringRef);
-        [[NSUserDefaults standardUserDefaults] setObject:uIdentifier forKey:@"Unique identifier for myApp"];
+        [[NSUserDefaults standardUserDefaults] setObject:uIdentifier forKey:kMCrumbsStartupAppUniqueAppIdentifierKey];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     return uIdentifier;
