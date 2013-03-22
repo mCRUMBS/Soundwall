@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "ChanID.h"
-#import "FirstViewController.h"
 
 //***************************************************************************************
 // Private Interface declaration
@@ -43,11 +42,10 @@
     [tabBarItem2 setFinishedSelectedImage:[UIImage imageNamed:@"stories_aktiv.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"stories.png"]];
     [tabBarItem3 setFinishedSelectedImage:[UIImage imageNamed:@"start_up_aktiv.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"start_up.png"]];
     [tabBarItem4 setFinishedSelectedImage:[UIImage imageNamed:@"mehr_aktiv.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"mehr.png"]];
-    
-    UIImage* tabBarBackground = [[UIImage imageNamed:@"tab-bar_hg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    [[UITabBar appearance] setBackgroundImage:tabBarBackground];
-    [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"tab-bar_active.png"]];
-    
+
+    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UITabBar appearance] setSelectionIndicatorImage:[[UIImage imageNamed:@"tab-bar_active"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)]];
+
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                        [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0], UITextAttributeTextColor, [NSValue valueWithUIOffset:UIOffsetMake(0,0)], UITextAttributeTextShadowOffset,
                                                        [UIFont fontWithName:@"Arial-BoldMT" size:13.0], UITextAttributeFont,                                                       nil] forState:UIControlStateNormal];

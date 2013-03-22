@@ -27,4 +27,17 @@
     return uIdentifier;
 }
 
++ (BOOL)isRetina {
+    return [UIScreen mainScreen].scale > 1.0;
+}
+
++ (NSString *)imageNameRetinizer:(NSString *)imageName {
+    NSString *transformedImageName = imageName;
+    if ([AppEnvironment isRetina]) {
+        transformedImageName = [NSString stringWithFormat:@"%@@2x", transformedImageName];
+    }
+    NSLog(@"Transformed Image Name: %@", transformedImageName);
+    return transformedImageName;
+}
+
 @end

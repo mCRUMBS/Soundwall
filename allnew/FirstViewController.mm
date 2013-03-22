@@ -89,6 +89,7 @@
     
 }
 
+// todo this is never called !!
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     ChanID *user = [ChanID sharedUser];
@@ -136,6 +137,7 @@
 }
 
 - (void)showTabBar:(UITabBarController *)tabbarcontroller {
+    NSLog(@"Showing tab bar ....");
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
     for (UIView *view in tabbarcontroller.view.subviews) {
@@ -152,26 +154,35 @@
     [UIView commitAnimations];
 }
 
-- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
-    if ((fromInterfaceOrientation == UIInterfaceOrientationPortrait)
-            || (fromInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)) {
+#pragma mark -
+#pragma mark Interface Rotation
 
-        [self.headerImageView setImage:[UIImage imageNamed:@"header_wide@2x.png"]];
-        UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
-        UITabBar *tabBar = tabBarController.tabBar;
-        tabBar.backgroundImage = [UIImage imageNamed:@"tab-bar_hg_wide.png"];
-        UIImage* tabBarBackground = [[UIImage imageNamed:@"tab-bar_hg_wide.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-        [self.tabBarController.tabBar setBackgroundImage:tabBarBackground];
-        [self.tabBarController.tabBar setSelectionIndicatorImage:[UIImage imageNamed:@"tab-bar_active_wide.png"]];
-        
-        //       [[UITabBar appearance] setBackgroundImage:tabBarBackground];
-        
-    }
-    if ((fromInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
-            || (fromInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)) {
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES; // support all orientations
+}
 
-        [self.headerImageView setImage:[UIImage imageNamed:@"header.png"]];
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    UIImage *headerImageViewBackgroundImage = nil;
+    UIImage *tabBarSelectionIndicatorImage = nil;
+
+    UIEdgeInsets imgInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    UIInterfaceOrientation current = [[UIApplication sharedApplication] statusBarOrientation];
+
+    if (UIInterfaceOrientationIsPortrait(current)) { // current layout is "Portrait"
+        NSLog(@"Interface PORTRAIT");
+        tabBarSelectionIndicatorImage = [[UIImage imageNamed:@"tab-bar_active.png"] resizableImageWithCapInsets:imgInsets];
+        headerImageViewBackgroundImage = [[UIImage imageNamed:@"header.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
     }
+    else if (UIInterfaceOrientationIsLandscape(current)) { // current layout is "Landscape"
+        NSLog(@"Interface LANDSCAPE");
+        tabBarSelectionIndicatorImage = [[UIImage imageNamed:@"tab-bar_active_wide.png"] resizableImageWithCapInsets:imgInsets];
+        headerImageViewBackgroundImage = [[UIImage imageNamed:@"header_wide.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
+    }
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tabBarController.tabBar setSelectionIndicatorImage:tabBarSelectionIndicatorImage];
+        [self.headerImageView setImage:headerImageViewBackgroundImage];
+    });
 }
 
 #pragma mark -
