@@ -40,8 +40,7 @@
     return uIdentifier;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
@@ -57,13 +56,14 @@
         if (screenSize.height > 480.0f) {
             [imageName appendString:@"-568h"];
         }
-        NSLog(@"Scale: %2f", screenSize.height);
         if ([UIScreen mainScreen].scale > 1.0) { // retina
             [imageName appendString:@"@2x"];
         }
-
-        NSLog(@"Image name: %@", imageName);
-        [imageArray addObject:[UIImage imageNamed:imageName]];
+        UIImage *image = [UIImage imageNamed:imageName];
+        if (image == nil) {
+            NSLog(@"WARNING: trying to load image '%@' failed, because the image file does not exist.", imageName);
+        }
+        [imageArray addObject:image];
     }
 
     CGFloat h = (screenSize.height > 480.0f) ? 568 : 480;
@@ -155,67 +155,37 @@
     [self showTabBar:self.tabBarController];
 }
 
-- (void)hideTabBar:(UITabBarController *) tabbarcontroller
-{
+- (void)hideTabBar:(UITabBarController *) tabbarcontroller {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.01];
-    
-    for(UIView *view in tabbarcontroller.view.subviews)
-    {
-       CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        if([view isKindOfClass:[UITabBar class]])
-        {
-            
-            
-            
-                if (screenSize.height > 480.0f) {
-                    [view setFrame:CGRectMake(view.frame.origin.x, 568, view.frame.size.width, view.frame.size.height)];
-                } else {
-                    [view setFrame:CGRectMake(view.frame.origin.x, 480, view.frame.size.width, view.frame.size.height)];
-                }
-          
-           
+    for (UIView *view in tabbarcontroller.view.subviews) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        if ([view isKindOfClass:[UITabBar class]]) {
+            CGFloat y = (screenSize.height > 480.0f) ? 568 : 480;
+            [view setFrame:CGRectMake(view.frame.origin.x, y, view.frame.size.width, view.frame.size.height)];
         }
-        else
-        {
-            if (screenSize.height > 480.0f) {
-                [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, 568)];
-            } else {
-                [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, 480)];
-            }
+        else {
+            CGFloat height = (screenSize.height > 480.0f) ? 568 : 480;
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, height)];
         }
     }
-    
     [UIView commitAnimations];
 }
 
-- (void)showTabBar:(UITabBarController *) tabbarcontroller
-{
+- (void)showTabBar:(UITabBarController *)tabbarcontroller {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
-    for(UIView *view in tabbarcontroller.view.subviews)
-    {
-        NSLog(@"%@", view);
+    for (UIView *view in tabbarcontroller.view.subviews) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        if([view isKindOfClass:[UITabBar class]])
-        {
-            if (screenSize.height > 480.0f) {
-                [view setFrame:CGRectMake(view.frame.origin.x, 519, view.frame.size.width, view.frame.size.height)];
-             } else {
-                 [view setFrame:CGRectMake(view.frame.origin.x, 431, view.frame.size.width, view.frame.size.height)];
-             }
-            
+        CGFloat y = (screenSize.height > 480.0f) ? 519 : 431;
+        if ([view isKindOfClass:[UITabBar class]]) {
+            [view setFrame:CGRectMake(view.frame.origin.x, y, view.frame.size.width, view.frame.size.height)];
         }
-        else
-        {
-            if (screenSize.height > 480.0f) {
-                [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, 519)];
-             } else {
-                 [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, 431)];
-             }
+        else {
+            CGFloat height = (screenSize.height > 480.0f) ? 519 : 431;
+            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, height)];
         }
     }
-    
     [UIView commitAnimations];
 }
 
