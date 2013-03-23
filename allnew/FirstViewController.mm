@@ -166,28 +166,63 @@
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self updateContentAccordingToCurrentInterfaceOrientation];
 }
+     /*
+    if (UIInterfaceOrientationIsPortrait(current)) { // current layout is "Portrait"
+        NSLog(@"Interface PORTRAIT");
+//        tabBarBackgroundImage = [UIImage imageNamed:[AppEnvironment imageNameRetinizer:@"tab-bar_hg"]];
+//        tabBarSelectionIndicatorImage = [UIImage imageNamed:[AppEnvironment imageNameRetinizer:@"tab-bar_active"]];
+//        headerImageViewBackgroundImage = [UIImage imageNamed:[AppEnvironment imageNameRetinizer:@"header"]];
+        tabBarBackgroundImage = [UIImage imageNamed:@"tab-bar_hg"];
+        tabBarSelectionIndicatorImage = [UIImage imageNamed:@"tab-bar_active"];
+        headerImageViewBackgroundImage = [[UIImage imageNamed:@"header"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    }
+    else if (UIInterfaceOrientationIsLandscape(current)) { // current layout is "Landscape"
+        NSLog(@"Interface LANDSCAPE");
+//        tabBarBackgroundImage = [UIImage imageNamed:[AppEnvironment imageNameRetinizer:@"tab-bar_hg_wide"]];
+//        tabBarSelectionIndicatorImage = [UIImage imageNamed:[AppEnvironment imageNameRetinizer:@"tab-bar_active_wide"]];
+//        headerImageViewBackgroundImage = [UIImage imageNamed:[AppEnvironment imageNameRetinizer:@"header_wide"]];
 
+        tabBarBackgroundImage = [UIImage imageNamed:@"tab-bar_hg_wide"];
+        tabBarSelectionIndicatorImage = [UIImage imageNamed:@"tab-bar_active_wide"];
+        headerImageViewBackgroundImage = [UIImage imageNamed:@"header_wide"];
+    }
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"Update UI .....");
+        [[UITabBar appearance] setBackgroundImage:tabBarBackgroundImage];
+        [[UITabBar appearance] setSelectionIndicatorImage:tabBarSelectionIndicatorImage];
+        [self.headerImageView setImage:headerImageViewBackgroundImage];
+    });
+}
+*/
 - (void)updateContentAccordingToCurrentInterfaceOrientation {
-    UIImage *headerImageViewBackgroundImage = nil;
+    UIImage *tabBarBackgroundImage = nil;
     UIImage *tabBarSelectionIndicatorImage = nil;
+    UIImage *headerImageViewBackgroundImage = nil;
 
     UIEdgeInsets imgInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     UIInterfaceOrientation current = [[UIApplication sharedApplication] statusBarOrientation];
 
     if (UIInterfaceOrientationIsPortrait(current)) { // current layout is "Portrait"
+        tabBarBackgroundImage = [UIImage imageNamed:@"tab-bar_hg"];
         tabBarSelectionIndicatorImage = [[UIImage imageNamed:@"tab-bar_active.png"] resizableImageWithCapInsets:imgInsets];
         headerImageViewBackgroundImage = [[UIImage imageNamed:@"header.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
     }
     else if (UIInterfaceOrientationIsLandscape(current)) { // current layout is "Landscape"
+        NSString *tabBarImageName = @"tab-bar_hg_wide";
+        if (IS_IPHONE_5) {
+            tabBarImageName = @"tab-bar_hg_wide-568h";
+        }
+        tabBarBackgroundImage = [UIImage imageNamed:tabBarImageName];
         tabBarSelectionIndicatorImage = [[UIImage imageNamed:@"tab-bar_active_wide.png"] resizableImageWithCapInsets:imgInsets];
         headerImageViewBackgroundImage = [[UIImage imageNamed:@"header_wide.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
     }
 
     dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tabBarController.tabBar setBackgroundImage:tabBarBackgroundImage];
         [self.tabBarController.tabBar setSelectionIndicatorImage:tabBarSelectionIndicatorImage];
         [self.headerImageView setImage:headerImageViewBackgroundImage];
     });
-
 }
 
 #pragma mark -

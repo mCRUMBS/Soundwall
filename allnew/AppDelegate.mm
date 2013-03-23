@@ -43,7 +43,7 @@
     [tabBarItem3 setFinishedSelectedImage:[UIImage imageNamed:@"start_up_aktiv.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"start_up.png"]];
     [tabBarItem4 setFinishedSelectedImage:[UIImage imageNamed:@"mehr_aktiv.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"mehr.png"]];
 
-    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UITabBar appearance] setBackgroundImage:[[UIImage imageNamed:@"tab-bar_hg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)]];
     [[UITabBar appearance] setSelectionIndicatorImage:[[UIImage imageNamed:@"tab-bar_active"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)]];
 
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
