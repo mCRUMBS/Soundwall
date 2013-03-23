@@ -202,7 +202,7 @@
     [self.loadingSign1 stopAnimating];
     self.loadingSign1.hidden = YES;
     [NSThread sleepForTimeInterval:5.0];
-    [self showTabBar:self.tabBarController];
+    [self showTabBar:self.tabBarController]; // todo causes the tab bar to disappear in landscape layout
 }
 
 -(void)webView:(UIWebView *)webview didFailLoadWithError:(NSError *)error {

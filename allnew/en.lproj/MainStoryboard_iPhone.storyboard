@@ -23,6 +23,7 @@
                             </label>
                             <webView opaque="NO" contentMode="scaleToFill" scalesPageToFit="YES" id="eqs-si-sCQ">
                                 <rect key="frame" x="0.0" y="48" width="320" height="452"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.8784313725490196" green="0.91764705882352937" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="yia-2p-r3m"/>
@@ -69,6 +70,7 @@
                             </label>
                             <webView opaque="NO" contentMode="scaleToFill" scalesPageToFit="YES" id="nXb-FY-rsa">
                                 <rect key="frame" x="0.0" y="48" width="320" height="452"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.87843137250000003" green="0.91764705879999997" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="V9w-Be-1wh" id="aPV-6f-lLa"/>
@@ -113,6 +115,7 @@
                             </label>
                             <webView opaque="NO" contentMode="scaleToFill" scalesPageToFit="YES" id="4KB-TX-wPG">
                                 <rect key="frame" x="0.0" y="48" width="320" height="452"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.87843137250000003" green="0.91764705879999997" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="3" id="fjY-dV-iDZ"/>
@@ -158,6 +161,7 @@
                             </label>
                             <webView opaque="NO" contentMode="scaleToFill" scalesPageToFit="YES" id="jzq-cA-coT">
                                 <rect key="frame" x="0.0" y="48" width="320" height="452"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.87843137250000003" green="0.91764705879999997" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="Axt-nl-paR" id="W6Z-NJ-uEZ"/>
