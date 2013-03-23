@@ -18,6 +18,7 @@
 
 @end
 
+//#define kAppShouldSwitchToChannel1 @"APP_SHOULD_SWITCH_TO_CHANNEL_1";
 
 @implementation AppDelegate
 
@@ -73,6 +74,8 @@
     if ([text isEqualToString:@"channel1"]) {
         user.cusurl = text;
         user.starter = @"1";
+        [[NSNotificationCenter defaultCenter] postNotificationName:kAppShouldSwitchToChannel1
+                                                            object:user userInfo:nil];
     }
     else if ([text isEqualToString:@"channel2"]) {
         user.cusurl = text;

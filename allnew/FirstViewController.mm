@@ -10,12 +10,27 @@
 #import "ARViewController.h"
 #import "ChanID.h"
 #import "AppEnvironment.h"
+#import "AppDelegate.h"
 
 @class EAGLView;
 
 static BOOL START_ANIMATION_FINISHED = NO;
 
+//***************************************************************************************
+// private interface declaration
+//***************************************************************************************
+@interface FirstViewController ()
 
+- (void)trackNotifications:(NSNotification *)notification;
+
+- (void)presentARViewController;
+
+@end
+
+
+//***************************************************************************************
+// public interface implementation
+//***************************************************************************************
 @implementation FirstViewController
 
 @synthesize window = _window;
@@ -27,6 +42,9 @@ static BOOL START_ANIMATION_FINISHED = NO;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(trackNotifications:)
+                                                 name:kAppShouldSwitchToChannel1 object:nil];
 
     // Animierter SplashScreen
     START_ANIMATION_FINISHED = NO;
@@ -90,34 +108,10 @@ static BOOL START_ANIMATION_FINISHED = NO;
     
 }
 
-// todo this is never called !!
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    ChanID *user = [ChanID sharedUser];
-    if ([user.starter isEqualToString:@"1"]) {
-        if ([user.cusurl isEqualToString:@"channel1"]) {
-            [self.window makeKeyAndVisible];
-            ARViewController* junaioPlugin = [[ARViewController alloc] init];
-            
-            // present the viewcontroller
-            [self presentViewController:junaioPlugin animated:YES completion:nil];
-        }
-    }
-    user.starter = @"0";
-}
+//- (void)applicationWillEnterForeground:(UIApplication *)application
 
 - (void)viewDidAppear:(BOOL)animated {
-    ChanID *user = [ChanID sharedUser];
-    if ([user.starter isEqualToString:@"1"]) {
-        if ([user.cusurl isEqualToString:@"channel1"]) {
-        [self.window makeKeyAndVisible];
-        ARViewController* junaioPlugin = [[ARViewController alloc] init];
-    
-        // present the viewcontroller
-        [self presentViewController:junaioPlugin animated:YES completion:nil];
-        }
-    }
-    user.starter = @"0";
+    [self presentARViewController];
 }
 
 - (void)hideTabBar:(UITabBarController *) tabbarcontroller {
@@ -226,5 +220,29 @@ static BOOL START_ANIMATION_FINISHED = NO;
     [NSThread sleepForTimeInterval:5.0];
     [self showTabBar:self.tabBarController];
 }
+
+#pragma mark -
+#pragma mark private methods
+
+#pragma mark NSNotificationCenter callback
+
+- (void)trackNotifications:(NSNotification *)notification {
+    if ([[notification name] isEqualToString:kAppShouldSwitchToChannel1]) {
+        [self presentARViewController];
+    }
+}
+
+- (void)presentARViewController {
+    ChanID *user = [ChanID sharedUser];
+    if ([user.starter isEqualToString:@"1"]) {
+        if ([user.cusurl isEqualToString:@"channel1"]) {
+            [self.window makeKeyAndVisible];
+            ARViewController *junaioPlugin = [[ARViewController alloc] init];
+            [self presentViewController:junaioPlugin animated:YES completion:nil];
+        }
+    }
+    user.starter = @"0";
+}
+
 
 @end
