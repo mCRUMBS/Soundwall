@@ -13,9 +13,8 @@
 
 @class EAGLView;
 
-@interface FirstViewController ()
+static BOOL START_ANIMATION_FINISHED = NO;
 
-@end
 
 @implementation FirstViewController
 
@@ -30,6 +29,7 @@
     [super viewDidLoad];
 
     // Animierter SplashScreen
+    START_ANIMATION_FINISHED = NO;
     [self hideTabBar:self.tabBarController];
 
     CGSize screenSize = [[UIScreen mainScreen] bounds].size;
@@ -69,7 +69,6 @@
     [self setImage1:nil];
     [self setHeaderImageView:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -139,6 +138,7 @@
 }
 
 - (void)showTabBar:(UITabBarController *)tabbarcontroller {
+    START_ANIMATION_FINISHED = YES;
     NSLog(@"Showing tab bar ....");
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
@@ -160,41 +160,18 @@
 #pragma mark Interface Rotation
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES; // support all orientations
+    if (START_ANIMATION_FINISHED == NO) {
+        return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+    }
+    else {
+        return YES; // support all orientations
+    }
 }
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self updateContentAccordingToCurrentInterfaceOrientation];
 }
-     /*
-    if (UIInterfaceOrientationIsPortrait(current)) { // current layout is "Portrait"
-        NSLog(@"Interface PORTRAIT");
-//        tabBarBackgroundImage = [UIImage imageNamed:[AppEnvironment imageNameRetinizer:@"tab-bar_hg"]];
-//        tabBarSelectionIndicatorImage = [UIImage imageNamed:[AppEnvironment imageNameRetinizer:@"tab-bar_active"]];
-//        headerImageViewBackgroundImage = [UIImage imageNamed:[AppEnvironment imageNameRetinizer:@"header"]];
-        tabBarBackgroundImage = [UIImage imageNamed:@"tab-bar_hg"];
-        tabBarSelectionIndicatorImage = [UIImage imageNamed:@"tab-bar_active"];
-        headerImageViewBackgroundImage = [[UIImage imageNamed:@"header"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    }
-    else if (UIInterfaceOrientationIsLandscape(current)) { // current layout is "Landscape"
-        NSLog(@"Interface LANDSCAPE");
-//        tabBarBackgroundImage = [UIImage imageNamed:[AppEnvironment imageNameRetinizer:@"tab-bar_hg_wide"]];
-//        tabBarSelectionIndicatorImage = [UIImage imageNamed:[AppEnvironment imageNameRetinizer:@"tab-bar_active_wide"]];
-//        headerImageViewBackgroundImage = [UIImage imageNamed:[AppEnvironment imageNameRetinizer:@"header_wide"]];
 
-        tabBarBackgroundImage = [UIImage imageNamed:@"tab-bar_hg_wide"];
-        tabBarSelectionIndicatorImage = [UIImage imageNamed:@"tab-bar_active_wide"];
-        headerImageViewBackgroundImage = [UIImage imageNamed:@"header_wide"];
-    }
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"Update UI .....");
-        [[UITabBar appearance] setBackgroundImage:tabBarBackgroundImage];
-        [[UITabBar appearance] setSelectionIndicatorImage:tabBarSelectionIndicatorImage];
-        [self.headerImageView setImage:headerImageViewBackgroundImage];
-    });
-}
-*/
 - (void)updateContentAccordingToCurrentInterfaceOrientation {
     UIImage *tabBarBackgroundImage = nil;
     UIImage *tabBarSelectionIndicatorImage = nil;
