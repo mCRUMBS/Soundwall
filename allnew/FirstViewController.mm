@@ -181,12 +181,14 @@ static BOOL START_ANIMATION_FINISHED = NO;
     }
     else if (UIInterfaceOrientationIsLandscape(current)) { // current layout is "Landscape"
         NSString *tabBarImageName = @"tab-bar_hg_wide";
+        NSString *headerImageName = @"header_wide";
         if (IS_IPHONE_5) {
-            tabBarImageName = @"tab-bar_hg_wide-568h";
+            tabBarImageName = [NSString stringWithFormat:@"%@-568h", tabBarImageName];
+            headerImageName = [NSString stringWithFormat:@"%@-568h", headerImageName];
         }
         tabBarBackgroundImage = [UIImage imageNamed:tabBarImageName];
         tabBarSelectionIndicatorImage = [[UIImage imageNamed:@"tab-bar_active_wide.png"] resizableImageWithCapInsets:imgInsets];
-        headerImageViewBackgroundImage = [[UIImage imageNamed:@"header_wide.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
+        headerImageViewBackgroundImage = [[UIImage imageNamed:headerImageName] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
     }
 
     dispatch_async(dispatch_get_main_queue(), ^{
