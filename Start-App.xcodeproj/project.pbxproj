@@ -11,6 +11,11 @@
 		1F6507F516FF46B3005E41F0 /* SplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6507F316FF46B3005E41F0 /* SplashScreenViewController.m */; };
 		1F6507F616FF46B3005E41F0 /* SplashScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F6507F416FF46B3005E41F0 /* SplashScreenViewController.xib */; };
 		1F6507F916FF5838005E41F0 /* UIViewController+RotationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6507F816FF5838005E41F0 /* UIViewController+RotationHandler.m */; };
+		1F6507FD16FF882D005E41F0 /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F6507FC16FF882D005E41F0 /* AirshipConfig.plist */; };
+		1F6507FF16FF8BDA005E41F0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F6507FE16FF8BDA005E41F0 /* libsqlite3.dylib */; };
+		1F65080116FF8BE7005E41F0 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F65080016FF8BE7005E41F0 /* CoreTelephony.framework */; };
+		1F65080316FF8BF0005E41F0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F65080216FF8BF0005E41F0 /* StoreKit.framework */; };
+		1F65080516FF8BFE005E41F0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F65080416FF8BFE005E41F0 /* MessageUI.framework */; };
 		C21113FA16F497B5008C0A05 /* app_icon_startbuttons_57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = C21113F816F497B5008C0A05 /* app_icon_startbuttons_57x57.png */; };
 		C21113FB16F497B5008C0A05 /* app_icon_startbuttons_114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = C21113F916F497B5008C0A05 /* app_icon_startbuttons_114x114.png */; };
 		C21113FE16F49801008C0A05 /* app_icon_startbuttons_72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = C21113FC16F49801008C0A05 /* app_icon_startbuttons_72x72.png */; };
@@ -448,6 +453,11 @@
 		1F6507F416FF46B3005E41F0 /* SplashScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashScreenViewController.xib; sourceTree = "<group>"; };
 		1F6507F716FF5838005E41F0 /* UIViewController+RotationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RotationHandler.h"; sourceTree = "<group>"; };
 		1F6507F816FF5838005E41F0 /* UIViewController+RotationHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RotationHandler.m"; sourceTree = "<group>"; };
+		1F6507FC16FF882D005E41F0 /* AirshipConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirshipConfig.plist; sourceTree = "<group>"; };
+		1F6507FE16FF8BDA005E41F0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		1F65080016FF8BE7005E41F0 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		1F65080216FF8BF0005E41F0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		1F65080416FF8BFE005E41F0 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		C21113F816F497B5008C0A05 /* app_icon_startbuttons_57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_startbuttons_57x57.png; sourceTree = "<group>"; };
 		C21113F916F497B5008C0A05 /* app_icon_startbuttons_114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_startbuttons_114x114.png; sourceTree = "<group>"; };
 		C21113FC16F49801008C0A05 /* app_icon_startbuttons_72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_startbuttons_72x72.png; sourceTree = "<group>"; };
@@ -894,6 +904,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2EB64FE16F0E6DA00C0EE24 /* AudioToolbox.framework in Frameworks */,
+				1F65080516FF8BFE005E41F0 /* MessageUI.framework in Frameworks */,
+				1F65080316FF8BF0005E41F0 /* StoreKit.framework in Frameworks */,
+				1F65080116FF8BE7005E41F0 /* CoreTelephony.framework in Frameworks */,
+				1F6507FF16FF8BDA005E41F0 /* libsqlite3.dylib in Frameworks */,
 				C2EB64FF16F0E6DA00C0EE24 /* AVFoundation.framework in Frameworks */,
 				C2EB650016F0E6DA00C0EE24 /* CFNetwork.framework in Frameworks */,
 				C2EB650116F0E6DA00C0EE24 /* CoreFoundation.framework in Frameworks */,
@@ -924,6 +938,7 @@
 		1F54891416FC5C9C00B632D1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1F6507FB16FF8825005E41F0 /* UrbanAirship */,
 				1F54891516FC5CB000B632D1 /* AppEnvironment.h */,
 				1F54891616FC5CB000B632D1 /* AppEnvironment.m */,
 			);
@@ -938,6 +953,14 @@
 				1F6507F416FF46B3005E41F0 /* SplashScreenViewController.xib */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		1F6507FB16FF8825005E41F0 /* UrbanAirship */ = {
+			isa = PBXGroup;
+			children = (
+				1F6507FC16FF882D005E41F0 /* AirshipConfig.plist */,
+			);
+			path = UrbanAirship;
 			sourceTree = "<group>";
 		};
 		C26D4CF216F97C81006A2CA9 /* Icons 30x30 */ = {
@@ -1410,6 +1433,10 @@
 		C2C3CD3816EDF482008E9843 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1F65080416FF8BFE005E41F0 /* MessageUI.framework */,
+				1F65080216FF8BF0005E41F0 /* StoreKit.framework */,
+				1F65080016FF8BE7005E41F0 /* CoreTelephony.framework */,
+				1F6507FE16FF8BDA005E41F0 /* libsqlite3.dylib */,
 				C2EB64F016F0E6DA00C0EE24 /* AudioToolbox.framework */,
 				C2EB64F116F0E6DA00C0EE24 /* AVFoundation.framework */,
 				C2EB64F216F0E6DA00C0EE24 /* CFNetwork.framework */,
@@ -1982,6 +2009,7 @@
 				C241FE0716FE87DF005DA9CD /* tab-bar_hg@2x.png in Resources */,
 				C241FE0916FE8878005DA9CD /* tab-bar_active@2x.png in Resources */,
 				1F6507F616FF46B3005E41F0 /* SplashScreenViewController.xib in Resources */,
+				1F6507FD16FF882D005E41F0 /* AirshipConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

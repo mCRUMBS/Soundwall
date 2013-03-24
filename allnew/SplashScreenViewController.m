@@ -31,6 +31,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    CGFloat nRed = 217.0 / 255.0;
+    CGFloat nGreen = 229.0 / 255.0;
+    CGFloat nBlue = 237.0 / 255.0;
+    [self.view setBackgroundColor:[UIColor colorWithRed:nRed green:nGreen blue:nBlue alpha:1]];
+
     CGSize screenSize = [[UIScreen mainScreen] bounds].size;
     NSMutableArray *imageArray = [NSMutableArray arrayWithCapacity:100];
     for (int j = 1; j < 99; j++) {
@@ -52,7 +57,7 @@
     self.imageView.animationImages = imageArray;
     self.imageView.animationDuration = duration;
     self.imageView.animationRepeatCount = 1;
-    self.imageView.contentMode = UIViewContentModeScaleToFill;
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.imageView startAnimating];
 
     [self performSelector:@selector(animationDone) withObject:nil afterDelay:duration];
