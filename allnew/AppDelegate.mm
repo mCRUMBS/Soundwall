@@ -190,6 +190,7 @@
 @implementation AppDelegate (ARViewControllerUIProtocoll)
 
 - (void)closeButtonPushed {
+    self.launchURLisHandled = NO; // need to reset the flag here for consecutive calls, where the app is coming from background
     [self prepareAndShowMainInterface];
 }
 
