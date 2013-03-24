@@ -9,8 +9,7 @@
 #import "FirstViewController.h"
 #import "ChanID.h"
 #import "AppEnvironment.h"
-
-@class EAGLView;
+#import "UIViewController+RotationHandler.h"
 
 //***************************************************************************************
 // private interface declaration
@@ -55,7 +54,8 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillAppear:animated];
 
-    [self updateContentAccordingToCurrentInterfaceOrientation];
+    [self updateContentAccordingToCurrentInterfaceOrientation:self.headerImageView
+                                                   tabBarCtrl:self.tabBarController];
 
     self.webView1.hidden = NO;
     self.label1.hidden = YES;
@@ -114,39 +114,8 @@
 }
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [self updateContentAccordingToCurrentInterfaceOrientation];
-}
-
-- (void)updateContentAccordingToCurrentInterfaceOrientation {
-    UIImage *tabBarBackgroundImage = nil;
-    UIImage *tabBarSelectionIndicatorImage = nil;
-    UIImage *headerImageViewBackgroundImage = nil;
-
-    UIEdgeInsets imgInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-    UIInterfaceOrientation current = [[UIApplication sharedApplication] statusBarOrientation];
-
-    if (UIInterfaceOrientationIsPortrait(current)) { // current layout is "Portrait"
-        tabBarBackgroundImage = [UIImage imageNamed:@"tab-bar_hg"];
-        tabBarSelectionIndicatorImage = [[UIImage imageNamed:@"tab-bar_active.png"] resizableImageWithCapInsets:imgInsets];
-        headerImageViewBackgroundImage = [[UIImage imageNamed:@"header.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
-    }
-    else if (UIInterfaceOrientationIsLandscape(current)) { // current layout is "Landscape"
-        NSString *tabBarImageName = @"tab-bar_hg_wide";
-        NSString *headerImageName = @"header_wide";
-        if (IS_IPHONE_5) {
-            tabBarImageName = [NSString stringWithFormat:@"%@-568h", tabBarImageName];
-            headerImageName = [NSString stringWithFormat:@"%@-568h", headerImageName];
-        }
-        tabBarBackgroundImage = [UIImage imageNamed:tabBarImageName];
-        tabBarSelectionIndicatorImage = [[UIImage imageNamed:@"tab-bar_active_wide.png"] resizableImageWithCapInsets:imgInsets];
-        headerImageViewBackgroundImage = [[UIImage imageNamed:headerImageName] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
-    }
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tabBarController.tabBar setBackgroundImage:tabBarBackgroundImage];
-        [self.tabBarController.tabBar setSelectionIndicatorImage:tabBarSelectionIndicatorImage];
-        [self.headerImageView setImage:headerImageViewBackgroundImage];
-    });
+    [self updateContentAccordingToCurrentInterfaceOrientation:self.headerImageView
+                                                   tabBarCtrl:self.tabBarController];
 }
 
 #pragma mark -

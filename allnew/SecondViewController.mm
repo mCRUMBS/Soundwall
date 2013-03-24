@@ -9,6 +9,7 @@
 #import "SecondViewController.h"
 #import "ChanID.h"
 #import "AppEnvironment.h"
+#import "UIViewController+RotationHandler.h"
 
 @interface SecondViewController ()
 
@@ -19,15 +20,6 @@
 @synthesize webView2;
 @synthesize loadingSign2;
 @synthesize label2;
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self updateContentAccordingToCurrentInterfaceOrientation];
-}
 
 - (void)viewDidUnload {
     [self setWebView2:nil];
@@ -42,6 +34,10 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillAppear:animated];
+
+    [self updateContentAccordingToCurrentInterfaceOrientation:self.headerImageView
+                                                   tabBarCtrl:self.tabBarController];
+
     self.webView2.hidden = NO;
     self.label2.hidden = YES;
     ChanID *user = [ChanID sharedUser];
@@ -60,21 +56,8 @@
 }
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [self updateContentAccordingToCurrentInterfaceOrientation];
-}
-
-- (void)updateContentAccordingToCurrentInterfaceOrientation {
-    UIInterfaceOrientation current = [[UIApplication sharedApplication] statusBarOrientation];
-    UIImage *headerImageViewBackgroundImage = nil;
-    if (UIInterfaceOrientationIsPortrait(current)) { // current layout is "Portrait"
-        headerImageViewBackgroundImage = [[UIImage imageNamed:@"header.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
-    }
-    else if (UIInterfaceOrientationIsLandscape(current)) { // current layout is "Landscape"
-        headerImageViewBackgroundImage = [[UIImage imageNamed:@"header_wide.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
-    }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.headerImageView setImage:headerImageViewBackgroundImage];
-    });
+    [self updateContentAccordingToCurrentInterfaceOrientation:self.headerImageView
+                                                   tabBarCtrl:self.tabBarController];
 }
 
 #pragma mark -
