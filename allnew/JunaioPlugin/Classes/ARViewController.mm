@@ -12,31 +12,30 @@
 #pragma mark - View lifecycle
 @class EAGLView;
 
-- (void) viewDidLoad
-{
-	[super viewDidLoad];
-	[LiveViewObjectContextView class];
-	// use this call to move the radar position
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-	{
-		[self setRadarOffset:CGPointMake(-16, -20) scale:0.825f anchor:ANCHOR_TR];
-	}
-	else
-	{
-		[self setRadarOffset:CGPointMake(-4.5, -20) scale:0.55f anchor:ANCHOR_TR];
-	}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [LiveViewObjectContextView class];
+    // use this call to move the radar position
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [self setRadarOffset:CGPointMake(-16, -20) scale:0.825f anchor:ANCHOR_TR];
+    }
+    else {
+        [self setRadarOffset:CGPointMake(-4.5, -20) scale:0.55f anchor:ANCHOR_TR];
+    }
 
 }
-
 
 #pragma mark - react to UI events
 
 // Close the UIViewcontroller on pushing the close button.
-- (IBAction)onBtnClosePushed:(id)sender
-{
-    [self dismissModalViewControllerAnimated:YES];
+- (IBAction)onBtnClosePushed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+        // report close event to UI delegate
+        if (self.delegate) {
+            [self.delegate closeButtonPushed];
+        }
+    }];
 }
-
 
 #pragma mark - @protocol JunaioPluginDelegate
 

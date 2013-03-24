@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
-
-// Broadcasted to signal the app, that the augmented reality channel 1 should be used.
-NSString *const kAppShouldSwitchToChannel1 = @"APP_SHOULD_SWITCH_TO_CHANNEL_1";
+#import "ARViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -23,5 +21,12 @@ NSString *const kAppShouldSwitchToChannel1 = @"APP_SHOULD_SWITCH_TO_CHANNEL_1";
 // Location Manager Protocol declaration
 //***************************************************************************************
 @interface AppDelegate (LocationManagerProtocol) <CLLocationManagerDelegate>
+
+@end
+
+//***************************************************************************************
+// AR Protocol declaration
+//***************************************************************************************
+@interface AppDelegate (ARViewControllerUIProtocoll) <ARViewControllerUIDelegate>
 
 @end

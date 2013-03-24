@@ -7,23 +7,15 @@
 //
 
 #import "FirstViewController.h"
-#import "ARViewController.h"
 #import "ChanID.h"
 #import "AppEnvironment.h"
-#import "AppDelegate.h"
 
 @class EAGLView;
-
-static BOOL START_ANIMATION_FINISHED = NO;
 
 //***************************************************************************************
 // private interface declaration
 //***************************************************************************************
 @interface FirstViewController ()
-
-- (void)trackNotifications:(NSNotification *)notification;
-
-- (void)presentARViewController;
 
 @end
 
@@ -43,37 +35,9 @@ static BOOL START_ANIMATION_FINISHED = NO;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(trackNotifications:)
-                                                 name:kAppShouldSwitchToChannel1 object:nil];
+    // todo Martin: do we still need to hide / show the tabbar ??
+//    [self hideTabBar:self.tabBarController];
 
-    // Animierter SplashScreen
-    START_ANIMATION_FINISHED = NO;
-    [self hideTabBar:self.tabBarController];
-
-    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-    NSMutableArray *imageArray = [NSMutableArray arrayWithCapacity:100];
-    for (int j = 1; j < 99; j++) {
-        NSMutableString *imageName = [NSMutableString string];
-        [imageName appendString:@"Splash"];
-        [imageName appendString:[NSString stringWithFormat:@"%d", j]];
-        if (screenSize.height > 480.0f) {
-            [imageName appendString:@"-568h"];
-        }
-        UIImage *image = [UIImage imageNamed:imageName];
-        if (image == nil) {
-            NSLog(@"WARNING: trying to load image '%@' failed, because the image file does not exist.", imageName);
-        }
-        [imageArray addObject:image];
-    }
-
-    CGFloat h = (screenSize.height > 480.0f) ? 568 : 480;
-    UIImageView *ryuJump = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, h)];
-    ryuJump.animationImages = imageArray;
-    ryuJump.animationDuration = 5;
-    ryuJump.animationRepeatCount = 1;
-    ryuJump.contentMode = UIViewContentModeScaleToFill;
-    [self.view addSubview:ryuJump];
-    [ryuJump startAnimating];
     ChanID *user = [ChanID sharedUser];
     user.starter = @"1";
 }
@@ -105,12 +69,7 @@ static BOOL START_ANIMATION_FINISHED = NO;
     
 }
 
-//- (void)applicationWillEnterForeground:(UIApplication *)application
-
-- (void)viewDidAppear:(BOOL)animated {
-    [self presentARViewController];
-}
-
+// todo not needed anymore
 - (void)hideTabBar:(UITabBarController *) tabbarcontroller {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.01];
@@ -128,8 +87,8 @@ static BOOL START_ANIMATION_FINISHED = NO;
     [UIView commitAnimations];
 }
 
+// todo not needed anymore
 - (void)showTabBar:(UITabBarController *)tabbarcontroller {
-    START_ANIMATION_FINISHED = YES;
     NSLog(@"Showing tab bar ....");
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
@@ -151,12 +110,7 @@ static BOOL START_ANIMATION_FINISHED = NO;
 #pragma mark Interface Rotation
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    if (START_ANIMATION_FINISHED == NO) {
-        return UIInterfaceOrientationIsPortrait(interfaceOrientation);
-    }
-    else {
-        return YES; // support all orientations
-    }
+    return YES; // support all orientations
 }
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -206,8 +160,7 @@ static BOOL START_ANIMATION_FINISHED = NO;
 -(void) webViewDidFinishLoad:(UIWebView *)webView {
     [self.loadingSign1 stopAnimating];
     self.loadingSign1.hidden = YES;
-    [NSThread sleepForTimeInterval:5.0];
-    [self showTabBar:self.tabBarController]; // todo causes the tab bar to disappear in landscape layout
+//    [self showTabBar:self.tabBarController]; // todo causes the tab bar to disappear in landscape layout
 }
 
 -(void)webView:(UIWebView *)webview didFailLoadWithError:(NSError *)error {
@@ -216,32 +169,7 @@ static BOOL START_ANIMATION_FINISHED = NO;
     self.loadingSign1.hidden = YES;
     self.label1.hidden = NO;
     self.image1.hidden = NO;
-    [NSThread sleepForTimeInterval:5.0];
-    [self showTabBar:self.tabBarController];
+//    [self showTabBar:self.tabBarController];
 }
-
-#pragma mark -
-#pragma mark private methods
-
-#pragma mark NSNotificationCenter callback
-
-- (void)trackNotifications:(NSNotification *)notification {
-    if ([[notification name] isEqualToString:kAppShouldSwitchToChannel1]) {
-        [self presentARViewController];
-    }
-}
-
-- (void)presentARViewController {
-    ChanID *user = [ChanID sharedUser];
-    if ([user.starter isEqualToString:@"1"]) {
-        if ([user.cusurl isEqualToString:@"channel1"]) {
-            [self.window makeKeyAndVisible];
-            ARViewController *junaioPlugin = [[ARViewController alloc] init];
-            [self presentViewController:junaioPlugin animated:YES completion:nil];
-        }
-    }
-    user.starter = @"0";
-}
-
 
 @end

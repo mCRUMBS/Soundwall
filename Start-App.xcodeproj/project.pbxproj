@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1F54891716FC5CB000B632D1 /* AppEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F54891616FC5CB000B632D1 /* AppEnvironment.m */; };
+		1F6507F516FF46B3005E41F0 /* SplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6507F316FF46B3005E41F0 /* SplashScreenViewController.m */; };
+		1F6507F616FF46B3005E41F0 /* SplashScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F6507F416FF46B3005E41F0 /* SplashScreenViewController.xib */; };
 		C21113FA16F497B5008C0A05 /* app_icon_startbuttons_57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = C21113F816F497B5008C0A05 /* app_icon_startbuttons_57x57.png */; };
 		C21113FB16F497B5008C0A05 /* app_icon_startbuttons_114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = C21113F916F497B5008C0A05 /* app_icon_startbuttons_114x114.png */; };
 		C21113FE16F49801008C0A05 /* app_icon_startbuttons_72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = C21113FC16F49801008C0A05 /* app_icon_startbuttons_72x72.png */; };
@@ -440,6 +442,9 @@
 /* Begin PBXFileReference section */
 		1F54891516FC5CB000B632D1 /* AppEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppEnvironment.h; sourceTree = "<group>"; };
 		1F54891616FC5CB000B632D1 /* AppEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppEnvironment.m; sourceTree = "<group>"; };
+		1F6507F216FF46B3005E41F0 /* SplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenViewController.h; sourceTree = "<group>"; };
+		1F6507F316FF46B3005E41F0 /* SplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenViewController.m; sourceTree = "<group>"; };
+		1F6507F416FF46B3005E41F0 /* SplashScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashScreenViewController.xib; sourceTree = "<group>"; };
 		C21113F816F497B5008C0A05 /* app_icon_startbuttons_57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_startbuttons_57x57.png; sourceTree = "<group>"; };
 		C21113F916F497B5008C0A05 /* app_icon_startbuttons_114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_startbuttons_114x114.png; sourceTree = "<group>"; };
 		C21113FC16F49801008C0A05 /* app_icon_startbuttons_72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_startbuttons_72x72.png; sourceTree = "<group>"; };
@@ -920,6 +925,16 @@
 				1F54891616FC5CB000B632D1 /* AppEnvironment.m */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		1F6507F116FF468D005E41F0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1F6507F216FF46B3005E41F0 /* SplashScreenViewController.h */,
+				1F6507F316FF46B3005E41F0 /* SplashScreenViewController.m */,
+				1F6507F416FF46B3005E41F0 /* SplashScreenViewController.xib */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		C26D4CF216F97C81006A2CA9 /* Icons 30x30 */ = {
@@ -1417,6 +1432,7 @@
 		C2C3CD3F16EDF482008E9843 /* startapp */ = {
 			isa = PBXGroup;
 			children = (
+				1F6507F116FF468D005E41F0 /* ViewControllers */,
 				1F54891416FC5C9C00B632D1 /* Common */,
 				C2EB649B16F0E64000C0EE24 /* JunaioPlugin */,
 				C2C3CD4816EDF482008E9843 /* AppDelegate.h */,
@@ -1960,6 +1976,7 @@
 				C27608B916FE2FD000B2BA69 /* header_wide-568h@2x.png in Resources */,
 				C241FE0716FE87DF005DA9CD /* tab-bar_hg@2x.png in Resources */,
 				C241FE0916FE8878005DA9CD /* tab-bar_active@2x.png in Resources */,
+				1F6507F616FF46B3005E41F0 /* SplashScreenViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1979,6 +1996,7 @@
 				C2A66E4916FB40DA00D4FCE3 /* SecondViewController.mm in Sources */,
 				C2A66E4A16FB40DA00D4FCE3 /* ThirdViewController.mm in Sources */,
 				1F54891716FC5CB000B632D1 /* AppEnvironment.m in Sources */,
+				1F6507F516FF46B3005E41F0 /* SplashScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
