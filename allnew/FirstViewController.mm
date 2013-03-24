@@ -59,9 +59,6 @@ static BOOL START_ANIMATION_FINISHED = NO;
         if (screenSize.height > 480.0f) {
             [imageName appendString:@"-568h"];
         }
-        if ([UIScreen mainScreen].scale > 1.0) { // retina
-            [imageName appendString:@"@2x"];
-        }
         UIImage *image = [UIImage imageNamed:imageName];
         if (image == nil) {
             NSLog(@"WARNING: trying to load image '%@' failed, because the image file does not exist.", imageName);
