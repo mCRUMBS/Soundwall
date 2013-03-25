@@ -13,6 +13,7 @@ typedef void(^SplashScreenCustomBlockType)(void);
 @interface SplashScreenViewController : UIViewController
 
 @property(weak) IBOutlet UIImageView *imageView;
+@property(weak) IBOutlet UIImageView *animatedImageView;
 
 @property(strong) SplashScreenCustomBlockType callbackBlock;
 

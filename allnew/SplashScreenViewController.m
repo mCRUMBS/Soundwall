@@ -7,6 +7,7 @@
 //
 
 #import "SplashScreenViewController.h"
+#import "AppEnvironment.h"
 
 @interface SplashScreenViewController ()
 - (void)animationDone;
@@ -31,20 +32,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // setup background image view
+    NSString *backgroundImageName = nil;
+    if (IS_IPHONE_5) {
+        backgroundImageName = @"Splash_bg-568h@2x";
+        self.animatedImageView.frame = CGRectMake(68, 80, 184, 302);
+    }
+    else {
+        self.animatedImageView.frame = CGRectMake(68, 41, 184, 390);
+        if ([AppEnvironment isRetina]) {
+            backgroundImageName = @"Splash_bg@2x";
+        }
+        else {
+            backgroundImageName = @"Splash_bg";
+        }
+    }
+    self.imageView.image = [UIImage imageNamed:backgroundImageName];
+
+    // setup animation image view
     CGFloat nRed = 217.0 / 255.0;
     CGFloat nGreen = 229.0 / 255.0;
     CGFloat nBlue = 237.0 / 255.0;
     [self.view setBackgroundColor:[UIColor colorWithRed:nRed green:nGreen blue:nBlue alpha:1]];
 
-    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
     NSMutableArray *imageArray = [NSMutableArray arrayWithCapacity:100];
     for (int j = 1; j < 99; j++) {
         NSMutableString *imageName = [NSMutableString string];
         [imageName appendString:@"Splash"];
         [imageName appendString:[NSString stringWithFormat:@"%d", j]];
-        if (screenSize.height > 480.0f) {
-            [imageName appendString:@"-568h"];
-        }
         UIImage *image = [UIImage imageNamed:imageName];
         if (image == nil) {
             NSLog(@"WARNING: trying to load image '%@' failed, because the image file does not exist.", imageName);
@@ -54,11 +69,11 @@
 
     NSTimeInterval duration = 5.0;
 
-    self.imageView.animationImages = imageArray;
-    self.imageView.animationDuration = duration;
-    self.imageView.animationRepeatCount = 1;
-    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [self.imageView startAnimating];
+    self.animatedImageView.animationImages = imageArray;
+    self.animatedImageView.animationDuration = duration;
+    self.animatedImageView.animationRepeatCount = 1;
+    self.animatedImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.animatedImageView startAnimating];
 
     [self performSelector:@selector(animationDone) withObject:nil afterDelay:duration];
 }
