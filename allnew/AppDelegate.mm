@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 mCRUMBS GmbH. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "AppDelegate.h"
 #import "ChanID.h"
 #import "SplashScreenViewController.h"
@@ -194,21 +195,20 @@
     tabBarItem3.title = @"start-up";
     tabBarItem4.title = @"mehr";
 
-    [tabBarItem1 setFinishedSelectedImage:[UIImage imageNamed:@"news_aktiv.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"news.png"]];
-    [tabBarItem2 setFinishedSelectedImage:[UIImage imageNamed:@"stories_aktiv.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"stories.png"]];
-    [tabBarItem3 setFinishedSelectedImage:[UIImage imageNamed:@"start_up_aktiv.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"start_up.png"]];
-    [tabBarItem4 setFinishedSelectedImage:[UIImage imageNamed:@"mehr_aktiv.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"mehr.png"]];
+    [tabBarItem1 setFinishedSelectedImage:[UIImage imageNamed:@"news_aktiv"] withFinishedUnselectedImage:[UIImage imageNamed:@"news"]];
+    [tabBarItem2 setFinishedSelectedImage:[UIImage imageNamed:@"stories_aktiv"] withFinishedUnselectedImage:[UIImage imageNamed:@"stories"]];
+    [tabBarItem3 setFinishedSelectedImage:[UIImage imageNamed:@"start_up_aktiv"] withFinishedUnselectedImage:[UIImage imageNamed:@"start_up"]];
+    [tabBarItem4 setFinishedSelectedImage:[UIImage imageNamed:@"mehr_aktiv"] withFinishedUnselectedImage:[UIImage imageNamed:@"mehr"]];
 
-    [[UITabBar appearance] setBackgroundImage:[[UIImage imageNamed:@"tab-bar_hg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)]];
-    [[UITabBar appearance] setSelectionIndicatorImage:[[UIImage imageNamed:@"tab-bar_active"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)]];
+    [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"tab-bar_hg"]];
+    [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"tab-bar_active"]];
 
-    [[UITabBarItem appearance]                                           setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
             [UIColor colorWithRed:0 / 255.0 green:0 / 255.0 blue:0 / 255.0 alpha:1.0], UITextAttributeTextColor, [NSValue valueWithUIOffset:UIOffsetMake(0, 0)], UITextAttributeTextShadowOffset,
             [UIFont fontWithName:@"Arial-BoldMT" size:13.0], UITextAttributeFont, nil] forState:UIControlStateNormal];
     UIColor *titleHighlightedColor = [UIColor colorWithRed:189 / 255.0 green:209 / 255.0 blue:222 / 255.0 alpha:1.0];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-            titleHighlightedColor, UITextAttributeTextColor,
-            nil]                             forState:UIControlStateSelected];
+            titleHighlightedColor, UITextAttributeTextColor, nil] forState:UIControlStateSelected];
 }
 
 @end

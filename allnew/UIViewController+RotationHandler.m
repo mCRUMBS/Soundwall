@@ -18,31 +18,30 @@
     UIImage *tabBarSelectionIndicatorImage = nil;
     UIImage *headerImageViewBackgroundImage = nil;
 
-    UIEdgeInsets imgInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     UIInterfaceOrientation current = [[UIApplication sharedApplication] statusBarOrientation];
 
     if (UIInterfaceOrientationIsPortrait(current)) { // current layout is "Portrait"
         tabBarBackgroundImage = [UIImage imageNamed:@"tab-bar_hg"];
-        tabBarSelectionIndicatorImage = [[UIImage imageNamed:@"tab-bar_active.png"] resizableImageWithCapInsets:imgInsets];
-        headerImageViewBackgroundImage = [[UIImage imageNamed:@"header.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
+        tabBarSelectionIndicatorImage = [UIImage imageNamed:@"tab-bar_active"];
+        headerImageViewBackgroundImage = [[UIImage imageNamed:@"header"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
     }
     else if (UIInterfaceOrientationIsLandscape(current)) { // current layout is "Landscape"
         NSString *tabBarImageName = @"tab-bar_hg_wide";
+        NSString *tabBarSelectionImageName = @"tab-bar_active_wide";
         NSString *headerImageName = @"header_wide";
         if (IS_IPHONE_5) {
             tabBarImageName = [NSString stringWithFormat:@"%@-568h", tabBarImageName];
+            tabBarSelectionImageName = [NSString stringWithFormat:@"%@-568h", tabBarSelectionImageName];
             headerImageName = [NSString stringWithFormat:@"%@-568h", headerImageName];
         }
         tabBarBackgroundImage = [UIImage imageNamed:tabBarImageName];
-        tabBarSelectionIndicatorImage = [[UIImage imageNamed:@"tab-bar_active_wide.png"] resizableImageWithCapInsets:imgInsets];
+        tabBarSelectionIndicatorImage = [UIImage imageNamed:tabBarSelectionImageName];
         headerImageViewBackgroundImage = [[UIImage imageNamed:headerImageName] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
     }
 
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [ctrl.tabBar setBackgroundImage:tabBarBackgroundImage];
-        [ctrl.tabBar setSelectionIndicatorImage:tabBarSelectionIndicatorImage];
-        [header setImage:headerImageViewBackgroundImage];
-    });
+    [ctrl.tabBar setBackgroundImage:tabBarBackgroundImage];
+    [ctrl.tabBar setSelectionIndicatorImage:tabBarSelectionIndicatorImage];
+    [header setImage:headerImageViewBackgroundImage];
 }
 
 @end
