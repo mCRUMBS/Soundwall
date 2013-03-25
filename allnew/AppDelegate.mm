@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "ChanID.h"
 #import "SplashScreenViewController.h"
+#import "AppEnvironment.h"
+#import "UAirship.h"
+#import "UAPush.h"
 
 //***************************************************************************************
 // Private Interface declaration
@@ -42,8 +45,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    [AppEnvironment setupPushNotificationsWithOptions:launchOptions];
 
     self.launchURLisHandled = YES;
 
@@ -74,7 +76,14 @@
     if ([CLLocationManager locationServicesEnabled]) {
         [self.locationManager startUpdatingLocation];
     }
+
+    [self handlePushNotificationInLaunchOptions:launchOptions];
+
     return YES;
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+    [UAirship land];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
@@ -85,12 +94,52 @@
     return NO;
 }
 
+#pragma mark - Push notifications
+
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NSLog(@"My token is: %@", deviceToken);
+    // Updates the device token and registers the token with UA.
+    [[UAPush shared] registerDeviceToken:deviceToken];
+
+    [self registerDeviceForCurrentAccountWithToken:deviceToken];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    NSLog(@"Failed to get token, error: %@", error);
+    NSLog(@"APNS: %@", [error description]);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+
+    // todo the app received a  push notification, now what?
+    // todo how should the notification be displayed?
+
+
+//    if (![AppEnvironment authToken]) {
+//        return;
+//    }
+//    if ([userInfo objectForKey:@"type"]) {
+//        NSInteger type = [[userInfo objectForKey:@"type"] intValue];
+//        if (type == PNS_SUBJECT_TYPE_QUESTION) {
+//            [self.rootViewController showRequestForId:[userInfo objectForKey:@"remote_id"]];
+//        } else if (type == PNS_SUBJECT_TYPE_APPOINTMENT) {
+//            [self.rootViewController showAppointmentForId:[userInfo objectForKey:@"remote_id"]];
+//        }
+//    }
+}
+
+- (void)handlePushNotificationInLaunchOptions:(NSDictionary *)launchOptions {
+    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (userInfo) {
+        [self application:[UIApplication sharedApplication] didReceiveRemoteNotification:userInfo];
+    }
+}
+
+- (void)registerDeviceForCurrentAccountWithToken:(NSData *)deviceToken {
+//    [UAPush shared].alias = $S(@"account-%@", [AppEnvironment authToken]);
+    [[UAPush shared] registerDeviceToken:deviceToken];
+    [[UAPush shared] updateAlias:[UAPush shared].alias];
+    [[UAPush shared] updateRegistration];
+    [AppEnvironment setApnsDeviceToken:deviceToken];
+    NSLog(@"APNS: Setting alias '%@' for device token: %@", [UAPush shared].alias, deviceToken);
 }
 
 #pragma mark -
