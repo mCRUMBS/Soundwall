@@ -3195,6 +3195,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LIBRARY = "compiler-default";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Martin Adam (Q9J9RA396E)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/allnew/JunaioPlugin\"",
@@ -3212,6 +3213,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Start-App copy";
+				PROVISIONING_PROFILE = "1055F9CF-6B8D-4DAC-B1EA-634033D37C5C";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3221,6 +3223,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LIBRARY = "compiler-default";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Martin Adam (Q9J9RA396E)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/allnew/JunaioPlugin\"",
@@ -3238,6 +3241,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Start-App copy";
+				PROVISIONING_PROFILE = "1055F9CF-6B8D-4DAC-B1EA-634033D37C5C";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3313,7 +3317,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Joerg Polakowski (6HTWFVZTK6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Martin Adam (Q9J9RA396E)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/allnew/JunaioPlugin\"",
@@ -3334,7 +3338,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Start-App";
-				PROVISIONING_PROFILE = "F573AED8-6CCC-4A51-AC7F-3C0E78B5F520";
+				PROVISIONING_PROFILE = "C757A669-ACC4-48D4-8DFB-7EACD1F408AA";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3344,7 +3348,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Joerg Polakowski (6HTWFVZTK6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Martin Adam (Q9J9RA396E)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/allnew/JunaioPlugin\"",
@@ -3365,7 +3369,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Start-App";
-				PROVISIONING_PROFILE = "F573AED8-6CCC-4A51-AC7F-3C0E78B5F520";
+				PROVISIONING_PROFILE = "C757A669-ACC4-48D4-8DFB-7EACD1F408AA";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

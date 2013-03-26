@@ -32,11 +32,4 @@
 */
 + (NSString *)imageNameRetinizer:(NSString *)imageName;
 
-+ (void)setApnsDeviceToken:(NSData *)token;
-
-+ (NSData *)apnsDeviceToken;
-
-+ (void)setupPushNotificationsWithOptions:(NSDictionary *)options;
-
-
 @end

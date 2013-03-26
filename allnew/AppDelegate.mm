@@ -6,11 +6,9 @@
 //  Copyright (c) 2013 mCRUMBS GmbH. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
 #import "AppDelegate.h"
 #import "ChanID.h"
 #import "SplashScreenViewController.h"
-#import "AppEnvironment.h"
 #import "UAirship.h"
 #import "UAPush.h"
 
@@ -25,6 +23,8 @@
 - (void)handleLaunchURL:(NSURL *)url;
 
 - (void)prepareAndShowMainInterface;
+
+- (void)setupPushNotificationsWithOptions:(NSDictionary *)launchOptions application:(UIApplication *)application;
 
 @end
 
@@ -46,7 +46,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    [AppEnvironment setupPushNotificationsWithOptions:launchOptions];
+    // setup Urban Airship for Push Notifications
+    [self setupPushNotificationsWithOptions:launchOptions application:application];
 
     self.launchURLisHandled = YES;
 
@@ -67,18 +68,16 @@
     [self.window setRootViewController:splash];
     [self.window makeKeyAndVisible];
 
-    if (self.locationManager == nil) {
-        self.locationManager = [[CLLocationManager alloc] init];
-        self.locationManager.delegate = self;
-        self.locationManager.purpose = @"Damit wir Ihnen lokale Informationen geben können, möchten wir Sie orten.";
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        self.locationManager.distanceFilter = 500;
-    }
-    if ([CLLocationManager locationServicesEnabled]) {
-        [self.locationManager startUpdatingLocation];
-    }
-
-    [self handlePushNotificationInLaunchOptions:launchOptions];
+//    if (self.locationManager == nil) {
+//        self.locationManager = [[CLLocationManager alloc] init];
+//        self.locationManager.delegate = self;
+//        self.locationManager.purpose = @"Damit wir Ihnen lokale Informationen geben können, möchten wir Sie orten.";
+//        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+//        self.locationManager.distanceFilter = 500;
+//    }
+//    if ([CLLocationManager locationServicesEnabled]) {
+//        [self.locationManager startUpdatingLocation];
+//    }
 
     return YES;
 }
@@ -100,8 +99,6 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Updates the device token and registers the token with UA.
     [[UAPush shared] registerDeviceToken:deviceToken];
-
-    [self registerDeviceForCurrentAccountWithToken:deviceToken];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
@@ -125,22 +122,6 @@
 //            [self.rootViewController showAppointmentForId:[userInfo objectForKey:@"remote_id"]];
 //        }
 //    }
-}
-
-- (void)handlePushNotificationInLaunchOptions:(NSDictionary *)launchOptions {
-    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-    if (userInfo) {
-        [self application:[UIApplication sharedApplication] didReceiveRemoteNotification:userInfo];
-    }
-}
-
-- (void)registerDeviceForCurrentAccountWithToken:(NSData *)deviceToken {
-//    [UAPush shared].alias = $S(@"account-%@", [AppEnvironment authToken]);
-    [[UAPush shared] registerDeviceToken:deviceToken];
-    [[UAPush shared] updateAlias:[UAPush shared].alias];
-    [[UAPush shared] updateRegistration];
-    [AppEnvironment setApnsDeviceToken:deviceToken];
-    NSLog(@"APNS: Setting alias '%@' for device token: %@", [UAPush shared].alias, deviceToken);
 }
 
 #pragma mark -
@@ -209,6 +190,35 @@
     UIColor *titleHighlightedColor = [UIColor colorWithRed:189 / 255.0 green:209 / 255.0 blue:222 / 255.0 alpha:1.0];
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
             titleHighlightedColor, UITextAttributeTextColor, nil] forState:UIControlStateSelected];
+}
+
+#pragma mark - Push notifications
+
+- (void)setupPushNotificationsWithOptions:(NSDictionary *)launchOptions application:(UIApplication *)application {
+    //Create Airship options dictionary and add the required UIApplication launchOptions
+    NSMutableDictionary *takeOffOptions = [NSMutableDictionary dictionary];
+    [takeOffOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
+
+    // Call takeOff (which creates the UAirship singleton), passing in the launch options so the
+    // library can properly record when the app is launched from a push notification. This call is
+    // required.
+    //
+    // Populate AirshipConfig.plist with your app's info from https://go.urbanairship.com
+    [UAirship takeOff:takeOffOptions];
+
+    // Set the icon badge to zero on startup (optional)
+    [[UAPush shared] enableAutobadge:YES];
+    [[UAPush shared] resetBadge];
+
+    // Register for remote notfications with the UA Library. This call is required.
+    [[UAPush shared] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                         UIRemoteNotificationTypeSound |
+                                                         UIRemoteNotificationTypeAlert)];
+
+    // Handle any incoming incoming push notifications.
+    // This will invoke `handleBackgroundNotification` on your UAPushNotificationDelegate.
+    [[UAPush shared] handleNotification:[launchOptions valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey]
+                       applicationState:application.applicationState];
 }
 
 @end

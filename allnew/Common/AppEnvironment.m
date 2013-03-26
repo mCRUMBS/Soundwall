@@ -7,8 +7,6 @@
 //
 
 #import "AppEnvironment.h"
-#import "UAirship.h"
-#import "UAPush.h"
 
 #define kMCrumbsStartupAppUniqueAppIdentifierKey @"Unique identifier for myApp"
 
@@ -40,35 +38,6 @@
     }
     NSLog(@"Transformed Image Name: %@", transformedImageName);
     return transformedImageName;
-}
-
-#pragma mark - APNS
-
-+ (void)setApnsDeviceToken:(NSData *)token {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:token forKey:@"apnsDeviceToken"];
-    [defaults synchronize];
-}
-
-+ (NSData *)apnsDeviceToken {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [defaults objectForKey:@"apnsDeviceToken"];
-}
-
-#pragma mark - Push notifications
-
-+ (void)setupPushNotificationsWithOptions:(NSDictionary *)options {
-    NSMutableDictionary *takeOffOptions = [[NSMutableDictionary alloc] init];
-    [takeOffOptions setValue:options forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
-    [UAirship takeOff:takeOffOptions];
-#if defined (DEVELOPMENT)
-    [UAirship setLogging:YES];
-#endif
-    [[UAPush shared] enableAutobadge:YES];
-    [[UAPush shared] resetBadge];
-
-    [[UIApplication sharedApplication]
-            registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
 }
 
 @end

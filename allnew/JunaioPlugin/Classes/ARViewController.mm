@@ -57,7 +57,7 @@
 		// set locationAtStartup to YES, because we're loading a location based channel
 		// that needs the location at the first request
 		m_useLocationAtStartup = YES;
-		return 4796;    // Wikipedia EN channel
+		return 166268;    // Wikipedia EN channel
 //	}
 //	else
 //	{
