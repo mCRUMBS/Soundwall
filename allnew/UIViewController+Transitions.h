@@ -22,7 +22,7 @@
  *
  * @param direction - A type for the transition. Legal values are 'fromLeft', 'fromRight', 'fromTop' and 'fromBottom'.
  */
-- (void) dismissViewControllerWithPushDirection:(NSString *)direction;
+- (void) dismissViewControllerWithPushDirection:(NSString *)direction completion:(void (^)(void))completion;
 
 @end
 

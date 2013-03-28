@@ -32,7 +32,7 @@
     [CATransaction commit];
 }
 
-- (void)dismissViewControllerWithPushDirection:(NSString *)direction {
+- (void)dismissViewControllerWithPushDirection:(NSString *)direction completion:(void (^)(void))completion {
     [CATransaction begin];
     
     CATransition *transition = [CATransition animation];
@@ -49,7 +49,7 @@
             [[UIApplication sharedApplication] endIgnoringInteractionEvents];
         });
     }];
-    [self dismissViewControllerAnimated:NO completion:NULL];
+    [self dismissViewControllerAnimated:NO completion:completion];
     [CATransaction commit];
 }
 

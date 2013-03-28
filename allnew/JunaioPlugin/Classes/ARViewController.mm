@@ -47,15 +47,9 @@
 
 #pragma mark - react to UI events
 
-// dismiss the view controller on pushing the 'back' button
-- (IBAction)onBackButtonAction:(id)sender {
-    [self dismissViewControllerWithPushDirection:@"fromLeft"];
-}
-
 // Close the UIViewcontroller on pushing the close button.
 - (IBAction)onBtnClosePushed:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{
-        // report close event to UI delegate
+    [self dismissViewControllerWithPushDirection:@"fromLeft" completion:^{
         if (self.delegate) {
             [self.delegate closeButtonPushed];
         }
