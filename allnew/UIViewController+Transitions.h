@@ -13,14 +13,14 @@
 /**
  *
  *
- * @param direction - A type for the transition. Legal values are `fromLeft', `fromRight', `fromTop' and `fromBottom'.
+ * @param direction - A type for the transition. Legal values are 'fromLeft', 'fromRight', 'fromTop' and 'fromBottom'.
  */
 - (void) presentViewController:(UIViewController *)viewController withPushDirection:(NSString *)direction;
 
 /**
  *
  *
- * @param direction - A type for the transition. Legal values are `fromLeft', `fromRight', `fromTop' and `fromBottom'.
+ * @param direction - A type for the transition. Legal values are 'fromLeft', 'fromRight', 'fromTop' and 'fromBottom'.
  */
 - (void) dismissViewControllerWithPushDirection:(NSString *)direction;
 

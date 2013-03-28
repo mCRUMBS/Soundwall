@@ -16,7 +16,7 @@
     
     CATransition *transition = [CATransition animation];
     transition.type = kCATransitionPush;
-    transition.subtype = direction;
+    transition.subtype = [self adjustAnimationDirectionAccordingToInterfaceOrientation:direction];
     transition.duration = 0.25f;
     transition.fillMode = kCAFillModeForwards;
     transition.removedOnCompletion = YES;
@@ -37,7 +37,7 @@
     
     CATransition *transition = [CATransition animation];
     transition.type = kCATransitionPush;
-    transition.subtype = direction;
+    transition.subtype = [self adjustAnimationDirectionAccordingToInterfaceOrientation:direction];
     transition.duration = 0.25f;
     transition.fillMode = kCAFillModeForwards;
     transition.removedOnCompletion = YES;
@@ -51,6 +51,69 @@
     }];
     [self dismissViewControllerAnimated:NO completion:NULL];
     [CATransaction commit];
+}
+
+//    'fromLeft', 'fromRight', 'fromTop' and 'fromBottom'.
+- (NSString *)adjustAnimationDirectionAccordingToInterfaceOrientation:(NSString *)direction {
+    UIInterfaceOrientation current = [[UIApplication sharedApplication] statusBarOrientation];
+    NSString *adjustedDirection = direction;
+    if ([direction isEqualToString:@"fromRight"]) {
+        if (current == UIInterfaceOrientationPortrait) {
+            adjustedDirection = @"fromRight";
+        }
+        else if (current == UIInterfaceOrientationPortraitUpsideDown) {
+            adjustedDirection = @"fromLeft";
+        }
+        else if (current == UIInterfaceOrientationLandscapeLeft) {
+            adjustedDirection = @"fromBottom";
+        }
+        else if (current == UIInterfaceOrientationLandscapeRight) {
+            adjustedDirection = @"fromTop";
+        }
+    }
+    else if ([direction isEqualToString:@"fromLeft"]) {
+        if (current == UIInterfaceOrientationPortrait) {
+            adjustedDirection = @"fromLeft";
+        }
+        else if (current == UIInterfaceOrientationPortraitUpsideDown) {
+            adjustedDirection = @"fromRight";
+        }
+        else if (current == UIInterfaceOrientationLandscapeLeft) {
+            adjustedDirection = @"fromTop";
+        }
+        else if (current == UIInterfaceOrientationLandscapeRight) {
+            adjustedDirection = @"fromBottom";
+        }
+    }
+    else if ([direction isEqualToString:@"fromTop"]) {
+        if (current == UIInterfaceOrientationPortrait) {
+            adjustedDirection = @"fromTop";
+        }
+        else if (current == UIInterfaceOrientationPortraitUpsideDown) {
+            adjustedDirection = @"fromBottom";
+        }
+        else if (current == UIInterfaceOrientationLandscapeLeft) {
+            adjustedDirection = @"fromLeft";
+        }
+        else if (current == UIInterfaceOrientationLandscapeRight) {
+            adjustedDirection = @"fromRight";
+        }
+    }
+    else if ([direction isEqualToString:@"fromBottom"]) {
+        if (current == UIInterfaceOrientationPortrait) {
+            adjustedDirection = @"fromBottom";
+        }
+        else if (current == UIInterfaceOrientationPortraitUpsideDown) {
+            adjustedDirection = @"fromTop";
+        }
+        else if (current == UIInterfaceOrientationLandscapeLeft) {
+            adjustedDirection = @"fromRight";
+        }
+        else if (current == UIInterfaceOrientationLandscapeRight) {
+            adjustedDirection = @"fromLeft";
+        }
+    }
+    return adjustedDirection;
 }
 
 @end
