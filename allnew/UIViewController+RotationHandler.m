@@ -34,32 +34,27 @@
 
     UIImage *tabBarBackgroundImage = nil;
     UIImage *tabBarSelectionIndicatorImage = nil;
-    UIImage *headerImageViewBackgroundImage = nil;
 
     UIInterfaceOrientation current = [[UIApplication sharedApplication] statusBarOrientation];
 
     if (UIInterfaceOrientationIsPortrait(current)) { // current layout is "Portrait"
         tabBarBackgroundImage = [UIImage imageNamed:@"tab-bar_hg"];
         tabBarSelectionIndicatorImage = [UIImage imageNamed:@"tab-bar_active"];
-        headerImageViewBackgroundImage = [[UIImage imageNamed:@"header"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
     }
     else if (UIInterfaceOrientationIsLandscape(current)) { // current layout is "Landscape"
         NSString *tabBarImageName = @"tab-bar_hg_wide";
         NSString *tabBarSelectionImageName = @"tab-bar_active_wide";
-        NSString *headerImageName = @"header_wide";
         if (IS_IPHONE_5) {
             tabBarImageName = [NSString stringWithFormat:@"%@-568h", tabBarImageName];
             tabBarSelectionImageName = [NSString stringWithFormat:@"%@-568h", tabBarSelectionImageName];
-            headerImageName = [NSString stringWithFormat:@"%@-568h", headerImageName];
         }
         tabBarBackgroundImage = [UIImage imageNamed:tabBarImageName];
         tabBarSelectionIndicatorImage = [UIImage imageNamed:tabBarSelectionImageName];
-        headerImageViewBackgroundImage = [[UIImage imageNamed:headerImageName] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
     }
 
     [ctrl.tabBar setBackgroundImage:tabBarBackgroundImage];
     [ctrl.tabBar setSelectionIndicatorImage:tabBarSelectionIndicatorImage];
-    [header setImage:headerImageViewBackgroundImage];
+    [self updateHeaderAccordingToCurrentInterfaceOrientation:header baseName:@"header"];
 }
 
 @end
