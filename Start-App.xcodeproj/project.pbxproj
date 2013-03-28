@@ -206,6 +206,7 @@
 		1F2A9A861700F9000081FC13 /* Splash_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2A9A821700F9000081FC13 /* Splash_bg.png */; };
 		1F2A9A881700F9000081FC13 /* Splash_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2A9A831700F9000081FC13 /* Splash_bg@2x.png */; };
 		1F2A9A8B1700F9290081FC13 /* Splash1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2A9A8A1700F9290081FC13 /* Splash1@2x.png */; };
+		1F2DB64C17046E7F0018FDFF /* UIViewController+Transitions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2DB64B17046E7F0018FDFF /* UIViewController+Transitions.m */; };
 		1F54891716FC5CB000B632D1 /* AppEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F54891616FC5CB000B632D1 /* AppEnvironment.m */; };
 		1F6507F516FF46B3005E41F0 /* SplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F6507F316FF46B3005E41F0 /* SplashScreenViewController.m */; };
 		1F6507F616FF46B3005E41F0 /* SplashScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F6507F416FF46B3005E41F0 /* SplashScreenViewController.xib */; };
@@ -652,6 +653,8 @@
 		1F2A9A821700F9000081FC13 /* Splash_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Splash_bg.png; sourceTree = "<group>"; };
 		1F2A9A831700F9000081FC13 /* Splash_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Splash_bg@2x.png"; sourceTree = "<group>"; };
 		1F2A9A8A1700F9290081FC13 /* Splash1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Splash1@2x.png"; sourceTree = "<group>"; };
+		1F2DB64A17046E7F0018FDFF /* UIViewController+Transitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Transitions.h"; sourceTree = "<group>"; };
+		1F2DB64B17046E7F0018FDFF /* UIViewController+Transitions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Transitions.m"; sourceTree = "<group>"; };
 		1F54891516FC5CB000B632D1 /* AppEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppEnvironment.h; sourceTree = "<group>"; };
 		1F54891616FC5CB000B632D1 /* AppEnvironment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppEnvironment.m; sourceTree = "<group>"; };
 		1F6507F216FF46B3005E41F0 /* SplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenViewController.h; sourceTree = "<group>"; };
@@ -1288,6 +1291,15 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
+		1F2DB64917046E610018FDFF /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				1F2DB64A17046E7F0018FDFF /* UIViewController+Transitions.h */,
+				1F2DB64B17046E7F0018FDFF /* UIViewController+Transitions.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		1F54891416FC5C9C00B632D1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -1302,6 +1314,7 @@
 		1F6507F116FF468D005E41F0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1F2DB64917046E610018FDFF /* Categories */,
 				1F6507F216FF46B3005E41F0 /* SplashScreenViewController.h */,
 				1F6507F316FF46B3005E41F0 /* SplashScreenViewController.m */,
 				1F6507F416FF46B3005E41F0 /* SplashScreenViewController.xib */,
@@ -2628,6 +2641,7 @@
 				1FDA6B9216FF950900586886 /* UASubscriptionTableViewDelegate.m in Sources */,
 				1FDA6B9416FF950900586886 /* UASubscriptionUI.m in Sources */,
 				1FDA6B9616FF950900586886 /* UASubscriptionUIUtil.m in Sources */,
+				1F2DB64C17046E7F0018FDFF /* UIViewController+Transitions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "ARViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -21,12 +20,5 @@
 // Location Manager Protocol declaration
 //***************************************************************************************
 @interface AppDelegate (LocationManagerProtocol) <CLLocationManagerDelegate>
-
-@end
-
-//***************************************************************************************
-// AR Protocol declaration
-//***************************************************************************************
-@interface AppDelegate (ARViewControllerUIProtocoll) <ARViewControllerUIDelegate>
 
 @end

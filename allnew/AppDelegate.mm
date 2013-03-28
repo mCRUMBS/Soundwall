@@ -17,10 +17,7 @@
 //***************************************************************************************
 @interface AppDelegate ()
 
-@property(assign) BOOL launchURLisHandled;
 @property(strong) CLLocationManager *locationManager;
-
-- (void)handleLaunchURL:(NSURL *)url;
 
 - (void)prepareAndShowMainInterface;
 
@@ -31,17 +28,6 @@
 @implementation AppDelegate
 
 #pragma mark -
-#pragma mark initialization
-
-- (id)init {
-    self = [super init];
-    if (self) {
-        self.launchURLisHandled = NO;
-    }
-    return self;
-}
-
-#pragma mark -
 #pragma mark app lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -49,21 +35,9 @@
     // setup Urban Airship for Push Notifications
     [self setupPushNotificationsWithOptions:launchOptions application:application];
 
-    self.launchURLisHandled = YES;
-
     SplashScreenViewController *splash = [[SplashScreenViewController alloc] initWithCallbackBlock:^{
-
         [self.window.rootViewController removeFromParentViewController]; // remove splash view controller
-
-        if (launchOptions && [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey]) {
-            // when opened with an start URL, we want to show the ARViewController
-            NSURL *url = (NSURL *) [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
-            [self handleLaunchURL:url];
-        }
-        else {
-            // if no url is present, then present default UI
-            [self prepareAndShowMainInterface];
-        }
+        [self prepareAndShowMainInterface]; // present default UI
     }];
     [self.window setRootViewController:splash];
     [self.window makeKeyAndVisible];
@@ -87,11 +61,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    if (url && self.launchURLisHandled == NO) {
-        [self handleLaunchURL:url];
-        return YES;
-    }
-    return NO;
+    return YES;
 }
 
 #pragma mark - Push notifications
@@ -126,34 +96,6 @@
 
 #pragma mark -
 #pragma mark private methods
-
-- (void)handleLaunchURL:(NSURL *)url {
-    self.launchURLisHandled = YES;
-
-    NSString *text = [[url host] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    ChanID *user = [ChanID sharedUser];
-    if ([text isEqualToString:@"channel1"]) {
-        user.cusurl = text;
-        user.starter = @"1";
-
-        // create proxy view controller and add it to the window
-        UIViewController *blender = [[UIViewController alloc] init];
-        blender.view.frame = self.window.frame;
-        [self.window setRootViewController:blender];
-        // prepare main window
-        [self.window makeKeyAndVisible];
-        // show AR controller
-        ARViewController *junaioPlugin = [[ARViewController alloc] init];
-        junaioPlugin.delegate = self; // we want to be notified when the ARViewController is closed !!
-        [blender presentViewController:junaioPlugin animated:YES completion:nil];
-
-        // reset
-        user.starter = @"0";
-    }
-    else if ([text isEqualToString:@"channel2"]) {
-        user.cusurl = text;
-    }
-}
 
 - (void)prepareAndShowMainInterface {
 
@@ -239,18 +181,6 @@
         user.lat = [NSString stringWithFormat:@"%.8f", newLocation.coordinate.latitude];
         [self.locationManager stopUpdatingLocation];
     }
-}
-
-@end
-
-//***************************************************************************************
-// AR Protocol implementation
-//***************************************************************************************
-@implementation AppDelegate (ARViewControllerUIProtocoll)
-
-- (void)closeButtonPushed {
-    self.launchURLisHandled = NO; // need to reset the flag here for consecutive calls, where the app is coming from background
-    [self prepareAndShowMainInterface];
 }
 
 @end
