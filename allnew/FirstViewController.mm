@@ -9,7 +9,12 @@
 #import "FirstViewController.h"
 #import "ChanID.h"
 #import "AppEnvironment.h"
+#import "ARViewController.h"
+
+// Categories
 #import "UIViewController+RotationHandler.h"
+#import "UIViewController+Transitions.h"
+
 
 //***************************************************************************************
 // private interface declaration
@@ -33,10 +38,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    // todo Martin: do we still need to hide / show the tabbar ??
-//    [self hideTabBar:self.tabBarController];
-
     ChanID *user = [ChanID sharedUser];
     user.starter = @"1";
 }
@@ -69,43 +70,6 @@
     
 }
 
-// todo not needed anymore
-- (void)hideTabBar:(UITabBarController *) tabbarcontroller {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.01];
-    for (UIView *view in tabbarcontroller.view.subviews) {
-        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        if ([view isKindOfClass:[UITabBar class]]) {
-            CGFloat y = (screenSize.height > 480.0f) ? 568 : 480;
-            [view setFrame:CGRectMake(view.frame.origin.x, y, view.frame.size.width, view.frame.size.height)];
-        }
-        else {
-            CGFloat height = (screenSize.height > 480.0f) ? 568 : 480;
-            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, height)];
-        }
-    }
-    [UIView commitAnimations];
-}
-
-// todo not needed anymore
-- (void)showTabBar:(UITabBarController *)tabbarcontroller {
-    NSLog(@"Showing tab bar ....");
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.5];
-    for (UIView *view in tabbarcontroller.view.subviews) {
-        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        CGFloat y = (screenSize.height > 480.0f) ? 519 : 431;
-        if ([view isKindOfClass:[UITabBar class]]) {
-            [view setFrame:CGRectMake(view.frame.origin.x, y, view.frame.size.width, view.frame.size.height)];
-        }
-        else {
-            CGFloat height = (screenSize.height > 480.0f) ? 519 : 431;
-            [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, height)];
-        }
-    }
-    [UIView commitAnimations];
-}
-
 #pragma mark -
 #pragma mark Interface Rotation
 
@@ -119,6 +83,14 @@
 }
 
 #pragma mark -
+#pragma mark UI action handling
+
+- (IBAction)startARViewAction:(id)sender {
+    ARViewController *junaioPlugin = [[ARViewController alloc] init];
+    [self presentViewController:junaioPlugin withPushDirection:@"fromRight"];
+}
+
+#pragma mark -
 #pragma mark UIWebViewDelegate
 
 -(void) webViewDidStartLoad:(UIWebView *)webView {
@@ -129,7 +101,6 @@
 -(void) webViewDidFinishLoad:(UIWebView *)webView {
     [self.loadingSign1 stopAnimating];
     self.loadingSign1.hidden = YES;
-//    [self showTabBar:self.tabBarController]; // todo causes the tab bar to disappear in landscape layout
 }
 
 -(void)webView:(UIWebView *)webview didFailLoadWithError:(NSError *)error {
@@ -138,7 +109,6 @@
     self.loadingSign1.hidden = YES;
     self.label1.hidden = NO;
     self.image1.hidden = NO;
-//    [self showTabBar:self.tabBarController];
 }
 
 @end

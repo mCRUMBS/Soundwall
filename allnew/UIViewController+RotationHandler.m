@@ -11,6 +11,24 @@
 
 @implementation UIViewController (RotationHandler)
 
+- (void)updateHeaderAccordingToCurrentInterfaceOrientation:(UIImageView *)header baseName:(NSString *)base {
+    UIInterfaceOrientation current = [[UIApplication sharedApplication] statusBarOrientation];
+
+    UIImage *headerImageViewBackgroundImage = nil;
+    if (UIInterfaceOrientationIsPortrait(current)) { // current layout is "Portrait"
+        headerImageViewBackgroundImage = [[UIImage imageNamed:base] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
+    }
+    else if (UIInterfaceOrientationIsLandscape(current)) { // current layout is "Landscape"
+        NSString *headerImageName = [NSString stringWithFormat:@"%@_wide", base];
+        if (IS_IPHONE_5) {
+            headerImageName = [NSString stringWithFormat:@"%@-568h", headerImageName];
+        }
+        headerImageViewBackgroundImage = [[UIImage imageNamed:headerImageName] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 200, 0, 300)];
+    }
+
+    [header setImage:headerImageViewBackgroundImage];
+}
+
 - (void)updateContentAccordingToCurrentInterfaceOrientation:(UIImageView *)header
                                                  tabBarCtrl:(UITabBarController *)ctrl {
 

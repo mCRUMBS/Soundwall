@@ -36,6 +36,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yDQ-8A-Xeg">
+                                <rect key="frame" x="157" y="0.0" width="163" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="AR_Button@2x.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startARViewAction:" destination="2" eventType="touchUpInside" id="YXo-qq-PAl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.8784313725490196" green="0.91764705882352937" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -46,6 +61,7 @@
                         <outlet property="image1" destination="vnb-JY-4jE" id="2aP-td-4Ob"/>
                         <outlet property="label1" destination="yiq-86-dcw" id="J9Y-1k-6mE"/>
                         <outlet property="loadingSign1" destination="hSN-Gr-LWe" id="1o5-IT-i1Q"/>
+                        <outlet property="startARViewButton" destination="yDQ-8A-Xeg" id="Jrx-37-OZW"/>
                         <outlet property="webView1" destination="eqs-si-sCQ" id="2wW-SF-asF"/>
                     </connections>
                 </viewController>
@@ -83,6 +99,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vhs-HV-leI">
+                                <rect key="frame" x="157" y="0.0" width="163" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="AR_Button@2x.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startARViewAction:" destination="V9w-Be-1wh" eventType="touchUpInside" id="Rp4-HI-xQ6"/>
+                                    <action selector="startARViewAction:" destination="2" eventType="touchUpInside" id="zfu-aq-efM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.8784313725490196" green="0.91764705882352937" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -91,6 +123,7 @@
                         <outlet property="headerImageView" destination="phS-31-ldF" id="KFZ-3k-HYM"/>
                         <outlet property="label3" destination="mfF-zI-XZT" id="906-rT-c1w"/>
                         <outlet property="loadingSign3" destination="F7f-JA-J0B" id="IsZ-xn-rdb"/>
+                        <outlet property="startARViewButton" destination="vhs-HV-leI" id="ZvS-MJ-Yn1"/>
                         <outlet property="webView3" destination="nXb-FY-rsa" id="gnA-L9-1LN"/>
                     </connections>
                 </viewController>
@@ -125,6 +158,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EeD-jV-pht">
+                                <rect key="frame" x="157" y="0.0" width="163" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="AR_Button@2x.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startARViewAction:" destination="3" eventType="touchUpInside" id="00Q-mT-mqL"/>
+                                    <action selector="startARViewAction:" destination="2" eventType="touchUpInside" id="5Me-C9-dn7"/>
+                                </connections>
+                            </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="gray" id="0gT-fl-4mq">
                                 <rect key="frame" x="150" y="240" width="20" height="20"/>
                             </activityIndicatorView>
@@ -137,6 +186,7 @@
                         <outlet property="headerImageView" destination="MyB-zd-R4B" id="Baz-7m-Z0q"/>
                         <outlet property="label2" destination="cct-rg-8WT" id="6I8-tb-twi"/>
                         <outlet property="loadingSign2" destination="0gT-fl-4mq" id="VLP-aK-s54"/>
+                        <outlet property="startARViewButton" destination="EeD-jV-pht" id="Ix3-VF-hkH"/>
                         <outlet property="webView2" destination="4KB-TX-wPG" id="oLt-sV-gP8"/>
                     </connections>
                 </viewController>
@@ -174,6 +224,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rT3-DC-EGH">
+                                <rect key="frame" x="157" y="0.0" width="163" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="AR_Button@2x.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startARViewAction:" destination="Axt-nl-paR" eventType="touchUpInside" id="Isz-38-vKg"/>
+                                    <action selector="startARViewAction:" destination="2" eventType="touchUpInside" id="TYG-Ka-8Qo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.8784313725490196" green="0.91764705882352937" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -183,6 +249,7 @@
                         <outlet property="headerImageView" destination="eSR-xr-hLH" id="r5J-lj-S4p"/>
                         <outlet property="label4" destination="K08-SV-bIZ" id="rQS-o4-Zuo"/>
                         <outlet property="loadingSign4" destination="drc-fI-Yfk" id="arU-5H-LGl"/>
+                        <outlet property="startARViewButton" destination="rT3-DC-EGH" id="UDd-qt-PSx"/>
                         <outlet property="webView4" destination="jzq-cA-coT" id="nHj-LJ-LIn"/>
                     </connections>
                 </viewController>
@@ -213,6 +280,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AR_Button@2x.png" width="325" height="97"/>
         <image name="first" width="16" height="16"/>
         <image name="header.png" width="320" height="55"/>
         <image name="iPhone_Fehlermeldung-Box.png" width="575" height="356"/>
@@ -222,37 +290,45 @@
         <class className="FirstViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
             <relationships>
+                <relationship kind="action" name="startARViewAction:"/>
                 <relationship kind="outlet" name="headerImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="image1" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="label1" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="loadingSign1" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="startARViewButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="webView1" candidateClass="UIWebView"/>
             </relationships>
         </class>
         <class className="FourthViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FourthViewController.h"/>
             <relationships>
+                <relationship kind="action" name="startARViewAction:"/>
                 <relationship kind="outlet" name="headerImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="label4" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="loadingSign4" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="startARViewButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="webView4" candidateClass="UIWebView"/>
             </relationships>
         </class>
         <class className="SecondViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondViewController.h"/>
             <relationships>
+                <relationship kind="action" name="startARViewAction:"/>
                 <relationship kind="outlet" name="headerImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="label2" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="loadingSign2" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="startARViewButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="webView2" candidateClass="UIWebView"/>
             </relationships>
         </class>
         <class className="ThirdViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ThirdViewController.h"/>
             <relationships>
+                <relationship kind="action" name="startARViewAction:"/>
                 <relationship kind="outlet" name="headerImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="label3" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="loadingSign3" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="startARViewButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="webView3" candidateClass="UIWebView"/>
             </relationships>
         </class>

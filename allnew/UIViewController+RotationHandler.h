@@ -10,6 +10,8 @@
 
 @interface UIViewController (RotationHandler)
 
+- (void)updateHeaderAccordingToCurrentInterfaceOrientation:(UIImageView *)header baseName:(NSString *)base;
+
 - (void)updateContentAccordingToCurrentInterfaceOrientation:(UIImageView *)header
                                                  tabBarCtrl:(UITabBarController *)ctrl;
 

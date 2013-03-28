@@ -10,6 +10,8 @@
 #import "ChanID.h"
 #import "AppEnvironment.h"
 #import "UIViewController+RotationHandler.h"
+#import "UIViewController+Transitions.h"
+#import "ARViewController.h"
 
 @interface SecondViewController ()
 
@@ -58,6 +60,14 @@
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self updateContentAccordingToCurrentInterfaceOrientation:self.headerImageView
                                                    tabBarCtrl:self.tabBarController];
+}
+
+#pragma mark -
+#pragma mark UI action handling
+
+- (IBAction)startARViewAction:(id)sender {
+    ARViewController *junaioPlugin = [[ARViewController alloc] init];
+    [self presentViewController:junaioPlugin withPushDirection:@"fromRight"];
 }
 
 #pragma mark -

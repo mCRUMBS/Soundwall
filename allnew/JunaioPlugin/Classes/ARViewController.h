@@ -25,8 +25,14 @@
 	bool	m_useLocationAtStartup;	//!< Flag to indicate if we should use the location at startup
 }
 
+@property(weak) IBOutlet UIView *headerView;
+@property(weak) IBOutlet UIImageView *headerImageView;
+@property(weak) IBOutlet UIButton *backButton;
+
 @property(nonatomic, assign) id <ARViewControllerUIDelegate> delegate;
 
+// Interface action handling
+- (IBAction)onBackButtonAction:(id)sender;
 - (IBAction)onBtnClosePushed:(id)sender;
 
 @end

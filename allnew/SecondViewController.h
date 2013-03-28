@@ -15,4 +15,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *label2;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 
+// ARView button and UI action handling
+@property(weak) IBOutlet UIButton *startARViewButton;
+
+- (IBAction)startARViewAction:(id)sender;
+
 @end

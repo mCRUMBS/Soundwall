@@ -7,6 +7,23 @@
 
 #import "ARViewController.h"
 
+// categories
+#import "UIViewController+RotationHandler.h"
+#import "UIViewController+Transitions.h"
+
+//***************************************************************************************
+// private interface declaration
+//***************************************************************************************
+@interface ARViewController ()
+
+
+
+@end
+
+
+//***************************************************************************************
+// public interface implementation
+//***************************************************************************************
 @implementation ARViewController
 
 #pragma mark - View lifecycle
@@ -22,10 +39,18 @@
     else {
         [self setRadarOffset:CGPointMake(-4.5, -20) scale:0.55f anchor:ANCHOR_TR];
     }
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self updateHeaderAccordingToCurrentInterfaceOrientation:self.headerImageView baseName:@"ar_header"];
 }
 
 #pragma mark - react to UI events
+
+// dismiss the view controller on pushing the 'back' button
+- (IBAction)onBackButtonAction:(id)sender {
+    [self dismissViewControllerWithPushDirection:@"fromLeft"];
+}
 
 // Close the UIViewcontroller on pushing the close button.
 - (IBAction)onBtnClosePushed:(id)sender {
@@ -35,6 +60,17 @@
             [self.delegate closeButtonPushed];
         }
     }];
+}
+
+#pragma mark -
+#pragma mark Interface Rotation
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES; // support all orientations
+}
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self updateHeaderAccordingToCurrentInterfaceOrientation:self.headerImageView baseName:@"ar_header"];
 }
 
 #pragma mark - @protocol JunaioPluginDelegate
