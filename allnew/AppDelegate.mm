@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "ChanID.h"
 #import "SplashScreenViewController.h"
 #import "UAirship.h"
 #import "UAPush.h"
@@ -44,17 +43,6 @@
     }];
     [self.window setRootViewController:splash];
     [self.window makeKeyAndVisible];
-
-//    if (self.locationManager == nil) {
-//        self.locationManager = [[CLLocationManager alloc] init];
-//        self.locationManager.delegate = self;
-//        self.locationManager.purpose = @"Damit wir Ihnen lokale Informationen geben können, möchten wir Sie orten.";
-//        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-//        self.locationManager.distanceFilter = 500;
-//    }
-//    if ([CLLocationManager locationServicesEnabled]) {
-//        [self.locationManager startUpdatingLocation];
-//    }
 
     return YES;
 }
@@ -164,26 +152,6 @@
     // This will invoke `handleBackgroundNotification` on your UAPushNotificationDelegate.
     [[UAPush shared] handleNotification:[launchOptions valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey]
                        applicationState:application.applicationState];
-}
-
-@end
-
-
-//***************************************************************************************
-// Location Manager Protocol implementation
-//***************************************************************************************
-@implementation AppDelegate (LocationManagerProtocol)
-
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation {
-
-    if (newLocation != nil) {
-        ChanID *user = [ChanID sharedUser];
-        user.lon = [NSString stringWithFormat:@"%.8f", newLocation.coordinate.longitude];
-        user.lat = [NSString stringWithFormat:@"%.8f", newLocation.coordinate.latitude];
-        [self.locationManager stopUpdatingLocation];
-    }
 }
 
 @end

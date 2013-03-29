@@ -7,18 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 // Concrete implementation of UIApplicationDelegate window reference.
 @property(strong, nonatomic) UIWindow *window;
-
-@end
-
-//***************************************************************************************
-// Location Manager Protocol declaration
-//***************************************************************************************
-@interface AppDelegate (LocationManagerProtocol) <CLLocationManagerDelegate>
 
 @end
