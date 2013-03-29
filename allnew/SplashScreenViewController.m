@@ -57,9 +57,7 @@
 
     NSMutableArray *imageArray = [NSMutableArray arrayWithCapacity:100];
     for (int j = 1; j < 99; j++) {
-        NSMutableString *imageName = [NSMutableString string];
-        [imageName appendString:@"Splash"];
-        [imageName appendString:[NSString stringWithFormat:@"%d", j]];
+        NSString *imageName = [NSString stringWithFormat:@"Splash%d@2x.png", j];
         UIImage *image = [UIImage imageNamed:imageName];
         if (image == nil) {
             NSLog(@"WARNING: trying to load image '%@' failed, because the image file does not exist.", imageName);
