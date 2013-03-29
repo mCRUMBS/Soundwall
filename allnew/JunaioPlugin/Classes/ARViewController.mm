@@ -12,16 +12,6 @@
 #import "UIViewController+Transitions.h"
 
 //***************************************************************************************
-// private interface declaration
-//***************************************************************************************
-@interface ARViewController ()
-
-
-
-@end
-
-
-//***************************************************************************************
 // public interface implementation
 //***************************************************************************************
 @implementation ARViewController
@@ -42,6 +32,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self updateHeaderAccordingToCurrentInterfaceOrientation:self.headerImageView baseName:@"ar_header"];
 }
 
@@ -77,10 +68,7 @@
  * If you want to use a location based channel, be sure to return 'YES' for (BOOL) shouldUseLocation,
  * otherwise 'NO'.
  */
-- (NSInteger) getChannelID
-{
-	// TODO: fill in your channel ID here.
-	
+- (NSInteger) getChannelID {
 //	bool loadLocationBasedChannel = false;
 //	if( loadLocationBasedChannel )
 //	{
@@ -98,20 +86,15 @@
 //	}
 }
 
-
-
 /** Optional
  *
  * return YES if the application should support location
  * If you return NO here, your application will never access the location sensors.
  * Most scan channels don't need a location, so NO can be returned here.
  */
-- (BOOL) shouldUseLocation
-{
+- (BOOL) shouldUseLocation {
     return YES;
 }
-
-
 
 /** Optional
  *
@@ -120,23 +103,8 @@
  * Return YES here if you are using a location based channel that needs location at startup
  * Returning NO will cause the request to the server having no location
  */
-- (BOOL) shouldUseLocationAtStartup
-{
+- (BOOL) shouldUseLocationAtStartup {
     return [self shouldUseLocation] && m_useLocationAtStartup;
 }
-
-
-
-///** Optional
-// *
-// * return YES to cache downloaded files
-// * During the development phase it makes sense to return NO here,
-// * if the channel content changes a lot.
-// */
-//- (BOOL) shouldUseCache
-//{
-//	return YES;
-//}
-
 
 @end

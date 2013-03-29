@@ -2101,17 +2101,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Martin Adam (Q9J9RA396E)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Joerg Polakowski (6HTWFVZTK6)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/allnew/JunaioPlugin\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "allnew/Start-App-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"DEVELOPMENT=1",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "../Airship/**";
 				INFOPLIST_FILE = "allnew/Start-App-Info.plist";
@@ -2122,7 +2119,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "Start-App";
-				PROVISIONING_PROFILE = "9AB43DFC-8EFB-4291-95EF-BD4E60FC8460";
+				PROVISIONING_PROFILE = "04AEC4C5-02C6-4D30-9346-5E1E6F2EB38B";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

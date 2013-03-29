@@ -14,6 +14,7 @@
 // Categories
 #import "UIViewController+RotationHandler.h"
 #import "UIViewController+Transitions.h"
+#import "AppDelegate.h"
 
 
 //***************************************************************************************
@@ -28,8 +29,6 @@
 // public interface implementation
 //***************************************************************************************
 @implementation FirstViewController
-
-@synthesize window = _window;
 
 @synthesize webView1;
 @synthesize loadingSign1;
