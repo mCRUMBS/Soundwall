@@ -16,8 +16,6 @@
 //***************************************************************************************
 @interface AppDelegate ()
 
-@property(strong) CLLocationManager *locationManager;
-
 - (void)prepareAndShowMainInterface;
 
 - (void)setupPushNotificationsWithOptions:(NSDictionary *)launchOptions application:(UIApplication *)application;
