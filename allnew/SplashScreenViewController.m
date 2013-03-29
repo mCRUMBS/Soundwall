@@ -85,6 +85,14 @@
     return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
 
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationPortrait;
+}
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
 #pragma mark -
 #pragma mark private methods
 
